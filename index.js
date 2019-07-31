@@ -24,8 +24,13 @@ app.set("view engine", "ejs");
 app.get("/", async (req, res)=>{
     res.render("index")
 
-})
+});
+
+app.get("/notes", async (req, res) => {
+
+    res.render("create-note")
+});
 
 app.listen(port, ()=>{
     console.log("hello in console")
-})
+});
