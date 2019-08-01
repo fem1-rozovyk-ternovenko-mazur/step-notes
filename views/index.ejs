@@ -14,9 +14,9 @@
 <body>
 
 <div class="container">
-        <h2 class="welcome-title">Створюйте свої нотатки та списки справ тут!</h2>
-
-        <div class="pure-css-cat">
+     <h2 class="welcome-title">Створюйте свої нотатки та списки справ тут!</h2>
+    <!--Лого-->
+     <div class="pure-css-cat">
             <div class="box">
                 <!-- Circular Head-->
                 <div class="head">
@@ -66,9 +66,22 @@
     <button type="button" id="addListButton" class="btn btn-success mb-2"><i class="far fa-check-square"></i>Додати список справ</button>
 
     <!--Колонка-->
-    <div class="card-columns mt-2">
 
-    <!--Картка Список-->
+    <!--Виведення списку нотаток-->
+    <div class="card-columns mt-2" id="notesList">
+        <% notes.forEach((el)=>{ %>
+
+        <!--Картка Нотатка-->
+        <div class="card" data-type="note">
+            <div class="card-body">
+                <h5 class="card-title">Card Note Title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+        <% }) %>
+
+
+        <!--Картка Список-->
         <div class="card" data-type="list">
             <div class="card-body">
                 <h5 class="card-title">Card List Title</h5>
@@ -83,15 +96,10 @@
             </div>
         </div>
 
-    <!--Картка Нотатка-->
-        <div class="card" data-type="note">
-            <div class="card-body">
-                <h5 class="card-title">Card Note Title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-        </div>
-
+    </div>
 
 </div>
+
+<script src="js/index.js"></script>
 </body>
 </html>

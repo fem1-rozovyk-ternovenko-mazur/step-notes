@@ -6,16 +6,18 @@
 
 .welcome-title {
     text-align: center;
+    margin: 10px;
 }
+
 .box{
     position: relative;
-    margin: auto;
+    margin: 0 auto;
     display: block;
-    margin-top: 8%;
     width: 300px;
     height: 210px;
     background: none;
 }
+
 .head{
     position: absolute;
     top:16.5%;
@@ -66,7 +68,7 @@
 }
 .eye-left{
     position: absolute;
-    background: yellow;
+    background: #FFCE1C;
     width: 20%;
     height: 20%;
     top: 37%;
@@ -76,7 +78,7 @@
 }
 .eye-right{
     position: absolute;
-    background: yellow;
+    background: #00BE4D;
     width: 20%;
     height: 20%;
     top: 37%;
