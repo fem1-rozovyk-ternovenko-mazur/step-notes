@@ -1,6 +1,13 @@
 .card-columns {
     display: inline-block;
     -webkit-column-break-inside: avoid;
+}
 
+.confirm-exit-wrapper{
+    position: absolute;
+    top: 30%;
+    left: 0;
+    z-index: 1000;
+    background: gray;
 }
 

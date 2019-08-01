@@ -23,7 +23,6 @@ app.set("view engine", "ejs");
 
 app.get("/", async (req, res)=>{
     res.render("index")
-
 });
 
 app.get("/notes", async (req, res) => {
