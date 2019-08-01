@@ -14,76 +14,86 @@
 <body>
 
 <div class="container">
-    <h2>Створюйте свої нотатки та списки справ тут!</h2>
+        <h2 class="welcome-title">Створюйте свої нотатки та списки справ тут!</h2>
 
-    <button type="button" id="addNoteButton" class="btn btn-success">Додати нотатку</button>
-    <button type="button" id="addListButton" class="btn btn-success">Додати список справ</button>
+        <div class="pure-css-cat">
+            <div class="box">
+                <!-- Circular Head-->
+                <div class="head">
+                    <!-- Circular Head Copy -->
+                    <div class="head-copy"></div>
+                    <!-- Left Ear ~ Black-->
+                    <div class="ear-left">
+                        <!-- Inner ear ~ Pink -->
+                        <div class="inner-ear"></div>
+                    </div>
+                    <!-- Right Ear ~ Black-->
+                    <div class="ear-right">
+                        <!-- Inner Ear ~ Pink-->
+                        <div class="inner-ear"></div>
+                    </div>
+                    <!-- Left Outer Eye ~ Yellow -->
+                    <div class="eye-left">
+                        <!-- Pupil ~ Black -->
+                        <div class="pupil">
+                        </div>
+                    </div>
+                   <!-- Right Outer Eye ~ Yellow -->
+                    <div class="eye-right">
+                        <!-- Pupil ~ Black -->
+                        <div class="pupil">
+                        </div>
+                    </div>
+                    <!-- Nose ~ Pink -->
+                    <div class="nose">
+                    </div>
+                    <!-- End Head -->
+                </div>
+                <!-- End Invisible Box -->
+                <!--
+                Copyright (c) 2019 by Anita Olsen (https://codepen.io/AnitaOlsen/pen/GyvLqV)
 
+                Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
-    <div class="card-columns mt-3">
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title that wraps to a new line</h5>
-                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer. This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+                THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+                -->
             </div>
-        </div>
-        <div class="card p-3">
-            <blockquote class="blockquote mb-0 card-body">
-                <p>"Будь собою, навіть якщо ти не знаєш, що це значить".</p>
-                <footer class="blockquote-footer">
-                    <small class="text-muted">
-                        Цитата-мотивашка дня <cite title="Source Title">Щойно придумала</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card bg-primary text-white text-center p-3">
-            <blockquote class="blockquote mb-0">
-                <p>"Pay hard, play rough or take your ball and go home".</p>
-                <footer class="blockquote-footer text-white">
-                    <small>
-                        Цитата-мотивашка дня <cite title="Source Title">Напис на футболці</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>
-        <div class="card text-center">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
-        <div class="card">
-            <img src="..." class="card-img-top" alt="...">
-        </div>
-        <div class="card p-3 text-right">
-            <blockquote class="blockquote mb-0">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-                <footer class="blockquote-footer">
-                    <small class="text-muted">
-                        Someone famous in <cite title="Source Title">Source Title</cite>
-                    </small>
-                </footer>
-            </blockquote>
-        </div>
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-            </div>
-        </div>
     </div>
+
+    <button type="button" id="addNoteButton" class="btn btn-warning mb-2"><i class="far fa-comment-alt"></i>Додати нотатку</button>
+    <button type="button" id="addListButton" class="btn btn-success mb-2"><i class="far fa-check-square"></i>Додати список справ</button>
+
+    <!--Колонка-->
+    <div class="card-columns mt-2">
+
+    <!--Картка Список-->
+        <div class="card" data-type="list">
+            <div class="card-body">
+                <h5 class="card-title">Card List Title</h5>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <input type="checkbox" aria-label="Checkbox for following text input">
+                        </div>
+                    </div>
+                    <input type="text" class="form-control" aria-label="Text input with checkbox">
+                </div>
+            </div>
+        </div>
+
+    <!--Картка Нотатка-->
+        <div class="card" data-type="note">
+            <div class="card-body">
+                <h5 class="card-title">Card Note Title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+
+
 </div>
+
+<script src="js/index.js"></script>
 </body>
 </html>
