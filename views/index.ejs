@@ -14,6 +14,7 @@
 <body>
 
 <div class="container">
+
         <h2 class="welcome-title">Створюйте свої нотатки та списки справ тут!</h2>
 
     <%- include('components/cat')%>
@@ -22,10 +23,20 @@
     <button type="button" id="addListButton" class="btn btn-success mb-2"><i class="far fa-check-square"></i>Додати список справ</button>
 
     <!--Колонка-->
-    <div class="card-columns mt-2">
 
-    <!--Картка Список-->
-        <div class="card" data-type="list">
+    <!--Виведення списку нотаток-->
+    <div class="card-columns mt-2" id="notesList">
+
+        <!--Картка Нотатка-->
+        <div class="card" data-type="note">
+            <div class="card-body">
+                <h5 class="card-title">Card Note Title</h5>
+                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            </div>
+        </div>
+
+        <!--Картка Список-->
+        <div class="card" data-type="list" id="checkList">
             <div class="card-body">
                 <h5 class="card-title">Card List Title</h5>
                 <div class="input-group mb-3">
@@ -39,14 +50,7 @@
             </div>
         </div>
 
-    <!--Картка Нотатка-->
-        <div class="card" data-type="note">
-            <div class="card-body">
-                <h5 class="card-title">Card Note Title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-            </div>
-        </div>
-
+    </div>
 
 </div>
 
