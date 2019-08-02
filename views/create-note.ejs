@@ -17,17 +17,18 @@
     <%- include('components/cat')%>
 
     <div class="create-note-wrapper">
-            <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
+        <div class="card text-dark bg-warning mb-3" style="max-width: 18rem;">
                 <div class="card-body">
                     <div class="row">
                         <div class="col text-right">
                             <button type="button" href="/" class="btn btn-danger" id="cancelBtn"> Х </button>
-                    </div>
+                        </div>
                 </div>
                     <div class="form-group">
                         <label for="note-title"> Назва </label>
                         <input type="text" class="form-control" id="note-title">
                     </div>
+
                     <div class="form-group">
                         <label for="note-txt"> Текст </label>
                         <textarea class="form-control" id="note-txt" rows="3" value="${text}"></textarea>
