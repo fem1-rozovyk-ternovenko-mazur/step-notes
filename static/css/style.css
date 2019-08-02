@@ -1,17 +1,16 @@
 .card-columns {
     display: inline-block;
     -webkit-column-break-inside: avoid;
-
 }
 
 .welcome-title {
+    margin: 10px;
     text-align: center;
 }
 .box{
     position: relative;
     margin: auto;
     display: block;
-    margin-top: 8%;
     width: 300px;
     height: 210px;
     background: none;
@@ -106,4 +105,20 @@
 
 .far {
     padding: 5px;
+}
+
+/*-------------  Notes   --------------*/
+.create-note-wrapper{
+    display: flex;
+    justify-content: center;}
+
+.confirm-exit-wrapper{
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    height: 100vh;
+    background: rgba(209, 236, 241, .5);
 }
