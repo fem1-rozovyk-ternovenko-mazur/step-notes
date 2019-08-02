@@ -69,7 +69,6 @@
 
     <!--Виведення списку нотаток-->
     <div class="card-columns mt-2" id="notesList">
-        <% notes.forEach((el)=>{ %>
 
         <!--Картка Нотатка-->
         <div class="card" data-type="note">
@@ -78,11 +77,9 @@
                 <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
             </div>
         </div>
-        <% }) %>
-
 
         <!--Картка Список-->
-        <div class="card" data-type="list">
+        <div class="card" data-type="list" id="checkList">
             <div class="card-body">
                 <h5 class="card-title">Card List Title</h5>
                 <div class="input-group mb-3">
