@@ -1,3 +1,7 @@
+// Елемент списка нотаток
+let notesList = document.getElementById('notesList');
+console.log(notesList);
+
 // Кнопка Додати нотатку
 
 const addNoteBtn = document.querySelector("#addNoteButton");
@@ -9,9 +13,6 @@ addNoteBtn.addEventListener("click", () => {
     getCardBody(id).setAttribute("data-created", "false")
 });
 
-// Елемент списка нотаток
-let notesList = document.getElementById('notesList');
-console.log(notesList);
 
 
 // Кнопка Додати список

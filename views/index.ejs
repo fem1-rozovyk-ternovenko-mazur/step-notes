@@ -28,11 +28,11 @@
     <div class="card-columns mt-2" id="notesList">
 
         <!--Картка Нотатка-->
-        <% notes.forEach((el)=>{ %>
+<!--        <% notes.forEach((elem)=>{ %>-->
         <div class="card" data-type="note">
             <div class="card-body">
-                <h5 class="card-title">Card Note Title</h5>
-                <p class="card-text">Card List Text</p>
+                <h5 class="card-title"><%= elem.title %></h5>
+                <p class="card-text"><%= elem.text %></p>
                 <button type="button" class="btn btn-danger">Видалити нотатку</button>
             </div>
         </div>
@@ -51,7 +51,7 @@
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
-        <% }) %>
+<!--        <% }) %>-->
     </div>
 
 </div>
