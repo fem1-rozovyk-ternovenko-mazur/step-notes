@@ -56,7 +56,6 @@ app.get("/lists", async (req, res) => {
 });
 
 
-
 app.get("/", async (req, res)=>{
     let notes = []
     await app.db.find({}).forEach((el) => {
@@ -66,7 +65,15 @@ app.get("/", async (req, res)=>{
 
 });
 
+// Перехід на сторінку нотатки
+app.get("/note", async (req, res) => {
+    let note;
+    await app.db.find({id: req.params.id }).forEach((elem) => {
+        note = elem
+    });
 
+    res.render("note")
+});
 
 app.listen(port, ()=>{
     console.log("hello in console")

@@ -30,7 +30,7 @@
         <!--Картка Нотатка-->
 <!--        <% notes.forEach((elem)=>{ %>-->
         <div class="card" data-type="note">
-            <div class="card-body">
+            <div class="card-body" id="${id}">
                 <h5 class="card-title"><%= elem.title %></h5>
                 <p class="card-text"><%= elem.text %></p>
                 <button type="button" class="btn btn-danger">Видалити нотатку</button>
@@ -40,7 +40,7 @@
         <!--Картка Список-->
 <!--        <div class="card" data-type="list" id="checkList">-->
 <!--            <div class="card-body">-->
-<!--                <h5 class="card-title">Card List Title</h5>-->
+<!--                <h5 class="card-title"><%= elem.title %></h5>-->
 <!--                <div class="input-group mb-3">-->
 <!--                    <div class="input-group-prepend">-->
 <!--                        <div class="input-group-text">-->
@@ -48,6 +48,8 @@
 <!--                        </div>-->
 <!--                    </div>-->
 <!--                    <input type="text" class="form-control" aria-label="Text input with checkbox">-->
+<!--                    <button type="button" class="btn btn-danger mt-4">Видалити список справ</button>-->
+
 <!--                </div>-->
 <!--            </div>-->
 <!--        </div>-->
