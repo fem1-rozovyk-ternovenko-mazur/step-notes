@@ -42,6 +42,11 @@ app.post("/notes", async (req, res) => {
     res.json({saved: true});
 });
 
+app.get("/lists", async (req, res) => {
+
+    res.render("create-list")
+});
+
 app.listen(port, ()=>{
     console.log("hello in console")
 });
