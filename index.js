@@ -15,6 +15,7 @@ client.connect(err => {
     console.log('BD connect error: ', err);
     const collection = client.db("STEP").collection("Notes");
     app.db = collection;
+
 });
 
 app.use(express.static(__dirname + "/static"));
@@ -22,19 +23,14 @@ app.use(express.static(__dirname + "/static"));
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res)=>{
-
-    let notes = [];
-    let lists = [];
-
+    let notes = []
     await app.db.find({}).forEach((elem) => {
-        if (elem.type === 'note'){
-            notes.push(elem)
-        }
-        if (elem.type === 'list'){
-            lists.push(elem)
-        }
+        notes.push(elem)
     });
-    res.render("index", {notes, lists})
+
+    res.render("index", {notes})
+    // app.db.find({})
+    // res.render("index")
 });
 
 app.get("/notes", async (req, res) => {
@@ -42,31 +38,35 @@ app.get("/notes", async (req, res) => {
     res.render("create-note");
 });
 
-// app.get(`notes/:id`, async (req, res) => {
-//
-//     let note;
-//
-//     await app.db.find({id:req.params.id}).forEach((el) => {
-//         note = el
-//     }) ;
-//
-//     res.render('note-detailed')
-// });
-
-// Перехід на сторінку нотатки
-app.get('/note/:id', async(req, res) => {
-    let note = [];
-    await app.db.find({id:req.params.id}).forEach((el) => {
-        return note.push(el)
-    });
-    res.render('note-detailed', {note})
-});
-
 
 app.get("/lists", async (req, res) => {
 
-    res.render("create-list")
+    res.render("listcreate")
 });
+
+app.post("/api/notes", async (req, res) => {
+    console.log(req.body);
+});
+
+app.get("/", async (req, res)=>{
+    let notes = []
+    await app.db.find({}).forEach((el) => {
+        notes.push(el)
+    });
+    res.render("index", {notes})
+});
+
+// Перехід на сторінку нотатки
+
+app.get('/note/:id', async(req, res) => {
+    let note = [];
+    await app.db.find({}).forEach((el) => {
+        return note.push(el)
+    });
+    res.render('note', {note})
+});
+
+// Перехід на головну сторінку після збереження нотатки
 
 app.post("/api/notes", async (req, res) => {
     console.log(req.body);
@@ -81,6 +81,6 @@ app.post("/api/notes", async (req, res) => {
     res.json({created:true})
 });
 
-app.listen(port, ()=>{
+app.listen(port, ()=> {
     console.log("hello in console")
 });

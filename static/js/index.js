@@ -1,8 +1,6 @@
-const addNoteBtn = document.querySelector("#addNoteButton");
-addNoteBtn.addEventListener("click", addNote);
-
+// Елемент списка нотаток
 let notesList = document.getElementById('notesList');
-console.log(notesList);
+// console.log(notesList);
 
 let checkList = document.getElementById('checkList');
 console.log(checkList);
@@ -18,6 +16,24 @@ function addList() {
     window.location.href = '/listcreate'
 }
 
+addNoteBtn.addEventListener("click", () => {
+    window.location.href = '/notes';
+    let id = Date.now();
+    notesList.appendChild(getCardTemplate(id, "", "", true));
+    getCardBody(id).setAttribute("data-created", "false")
+});
+
+
+// Кнопка Додати список
+
+const addListBtn = document.querySelector("#addListButton");
+addListBtn.addEventListener("click", () => {
+    window.location.href = '/lists'
+});
+
+// Перехід на нотатку по кліку
+
+
 const cardItem = document.getElementById('notesList');
 // console.log(cardItem);
 let cardToRedirect = '.card-body, .card-title, .card-text';
@@ -30,12 +46,3 @@ cardItem.addEventListener('click',  function(e) {
     }
 });
 
-
-//Елемент списка нотаток
-// console.log(notesList);
-
-
-// Кнопка Додати список справ
-// let addList = document.getElementById('addListButton');
-
-//Елемент списка нотаток
