@@ -4,7 +4,12 @@ let notesList = document.getElementById('notesList');
 
 // Кнопка Додати нотатку
 
-const addNoteBtn = document.querySelector("#addNoteButton");
+const addListBtn = document.querySelector("#addListButton");
+addListBtn.addEventListener("click", addList);
+
+function addList() {
+    window.location.href = '/listcreate'
+}
 
 addNoteBtn.addEventListener("click", () => {
     window.location.href = '/notes';
