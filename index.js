@@ -38,19 +38,6 @@ app.get("/notes", async (req, res) => {
     res.render("create-note");
 });
 
-app.get(`notes/:id`, async (req, res) => {
-
-    let note;
-
-    await app.db.find({id:req.params.id}).forEach((el) => {
-        note = el
-    }) ;
-
-    res.render('note-detailed')
-});
-
-
-
 
 app.get("/lists", async (req, res) => {
 
