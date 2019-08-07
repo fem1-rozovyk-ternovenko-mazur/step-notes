@@ -39,6 +39,41 @@ function cancelNote() {
     })
 }
 
+// async function saveNote() {
+//
+//     let id = Date.now();
+//     let noteTitle = document.querySelector("#note-title").value;
+//     let noteTxt = document.querySelector('#note-txt').value;
+//
+//     let data = {
+//         id: id,
+//         type: "note",
+//         title: noteTitle,
+//         text: noteTxt,
+//     };
+//
+//     console.log(data);
+//     console.log(JSON.stringify(data));
+//
+//     if (data.text !== "") {
+//         let req = await fetch('http://localhost:3000/notes', {
+//             method: "POST",
+//             headers: {
+//                 "Content-Type": "application/json"
+//             },
+//             body: JSON.stringify(data),
+//         });
+//
+//         let answer = await req.json();
+//         alert(answer);
+//
+//         if (answer.saved){
+//
+//         }
+//
+//     }
+// }
+
 async function saveNote() {
 
     let id = Date.now();
@@ -52,24 +87,17 @@ async function saveNote() {
         text: noteTxt,
     };
 
-    console.log(data);
-    console.log(JSON.stringify(data));
+    if (data.text === "") { throw new Error("А смисл зберігати пусту нотатку?")}
 
-    if (data.text !== "") {
-        let req = await fetch('http://localhost:3000/notes', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data),
-        });
-
-        let answer = await req.json();
-        alert(answer);
-
-        if (answer.saved){
-
-        }
-
+    let req = await fetch('http://localhost:3000/api/notes', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+    });
+    let answer = await req.json();
+    if (answer.created){
+        window.location.href = '/'
     }
 }

@@ -23,16 +23,16 @@ addListBtn.addEventListener("click", () => {
 
 // Перехід на нотатку по кліку
 
+
 const cardItem = document.getElementById('notesList');
 // console.log(cardItem);
 let cardToRedirect = '.card-body, .card-title, .card-text';
 cardItem.addEventListener('click',  function(e) {
-    // let id = e.target;
     let id = e.target.dataset.id;
     if(e.target.matches(cardToRedirect)){
         console.log(id);
 
-        window.location.href = '/note'
+        window.location.href = `/note/:${id}`
     }
 });
 

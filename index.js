@@ -66,13 +66,28 @@ app.get("/", async (req, res)=>{
 });
 
 // Перехід на сторінку нотатки
-app.get("/note", async (req, res) => {
-    let note;
-    await app.db.find({id: req.params.id }).forEach((elem) => {
-        note = elem
-    });
 
-    res.render("note")
+app.get('/note/:id', async(req, res) => {
+    let note = [];
+    await app.db.find({}).forEach((el) => {
+        return note.push(el)
+    });
+    res.render('note', {note})
+});
+
+// Перехід на головну сторінку після збереження нотатки
+
+app.post("/api/notes", async (req, res) => {
+    console.log(req.body);
+
+    try {
+        await app.db.insertOne({
+            ...req.body,
+        })
+    } catch (err) {
+        console.log(err);
+    }
+    res.json({created:true})
 });
 
 app.listen(port, ()=>{
