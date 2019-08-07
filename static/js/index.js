@@ -1,8 +1,18 @@
 const addNoteBtn = document.querySelector("#addNoteButton");
 addNoteBtn.addEventListener("click", addNote);
 
+let notesList = document.getElementById('notesList');
+notesList.addEventListener('click', function (e) {
+    if (e.target.classList.contains('card-body')){
+        alert('tuta');
+        window.location.href = `notes/${e.target.id}`
+    }
+} );
+let checkList = document.getElementById('checkList');
+console.log(checkList);
+
 function addNote() {
-    window.location.href = '/notes'
+    window.location.href = '/notes';
 }
 
 const addListBtn = document.querySelector("#addListButton");
@@ -15,12 +25,10 @@ function addList() {
 
 
 //Елемент списка нотаток
-let notesList = document.getElementById('notesList');
 // console.log(notesList);
+
 
 // Кнопка Додати список справ
 // let addList = document.getElementById('addListButton');
 
 //Елемент списка нотаток
-let checkList = document.getElementById('checkList');
-console.log(checkList);

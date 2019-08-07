@@ -22,7 +22,19 @@ app.use(express.static(__dirname + "/static"));
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res)=>{
-    res.render("index")
+
+    let notes = [];
+    let lists = [];
+
+    await app.db.find({}).forEach((elem) => {
+        if (elem.type === 'note'){
+            notes.push(elem)
+        }
+        if (elem.type === 'list'){
+            lists.push(elem)
+        }
+    });
+    res.render("index", {notes, lists})
 });
 
 app.get("/notes", async (req, res) => {
@@ -30,21 +42,36 @@ app.get("/notes", async (req, res) => {
     res.render("create-note");
 });
 
+app.get(`notes/:id`, async (req, res) => {
 
-app.post("/notes", async (req, res) => {
-    try {
-        await app.db.insertOne({
-            ...req.body
-        })
-    } catch (err) {
-        console.log(err);
-    }
-    res.json({saved: true});
+    let note;
+
+    await app.db.find({id:req.params.id}).forEach((el) => {
+        note = el
+    }) ;
+
+    res.render('note-detailed')
 });
+
+
+
 
 app.get("/lists", async (req, res) => {
 
     res.render("create-list")
+});
+
+app.post("/api/notes", async (req, res) => {
+    console.log(req.body);
+
+    try {
+        await app.db.insertOne({
+            ...req.body,
+        })
+    } catch (err) {
+        console.log(err);
+    }
+    res.json({created:true})
 });
 
 app.listen(port, ()=>{

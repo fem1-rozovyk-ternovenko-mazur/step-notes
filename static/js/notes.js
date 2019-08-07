@@ -2,7 +2,6 @@
 const cancelBtn = document.querySelector("#cancelBtn");
 const saveNoteBtn = document.querySelector("#saveNoteBtn");
 
-
 cancelBtn.addEventListener("click", cancelNote);
 saveNoteBtn.addEventListener("click", saveNote);
 
@@ -51,24 +50,18 @@ async function saveNote() {
         text: noteTxt,
     };
 
-    console.log(data);
-    console.log(JSON.stringify(data));
+    if (data.text === "") { throw new Error("А смисл зберігати пусту нотатку?")}
 
-        if (data.text !== "") {
-            let req = await fetch('http://localhost:3000/notes', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data),
-            });
-
-            let answer = await req.json();
-            alert(answer);
-
-            if (answer.saved){
-
-            }
-
-        }
+    let req = await fetch('http://localhost:3000/api/notes', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data),
+    });
+    let answer = await req.json();
+    if (answer.created){
+        window.location.href = '/'
+    }
 }
+
