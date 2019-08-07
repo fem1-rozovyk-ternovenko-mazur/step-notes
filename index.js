@@ -15,6 +15,7 @@ client.connect(err => {
     console.log('BD connect error: ', err);
     const collection = client.db("STEP").collection("Notes");
     app.db = collection;
+
 });
 
 app.use(express.static(__dirname + "/static"));
@@ -22,31 +23,48 @@ app.use(express.static(__dirname + "/static"));
 app.set("view engine", "ejs");
 
 app.get("/", async (req, res)=>{
-
-    let notes = [];
+    let notes = []
     await app.db.find({}).forEach((elem) => {
-        if (elem.type === 'note'){
-            notes.push(elem)
-        }
+        notes.push(elem)
     });
+
     res.render("index", {notes})
+    // app.db.find({})
+    // res.render("index")
 });
 
 app.get("/notes", async (req, res) => {
+
     res.render("create-note");
 });
 
-app.get("/listcreate", async (req, res) => {
-    res.render ("listcreate");
+
+app.get("/lists", async (req, res) => {
+
+    res.render("listcreate")
 });
 
-app.get("note/:id", async (req, res) => {
-    let nts;
-    await app.db.find({id:req.params.id}).forEach((el) => {
-        nts = el
-    }) ;
-    res.render('note-detailed', {nts})
+
+app.get("/", async (req, res)=>{
+    let notes = []
+    await app.db.find({}).forEach((el) => {
+        notes.push(el)
+    });
+    res.render("index", {notes})
+
 });
+
+// Перехід на сторінку нотатки
+
+app.get('/note/:id', async(req, res) => {
+    let note = [];
+    await app.db.find({}).forEach((el) => {
+        return note.push(el)
+    });
+    res.render('note-detailed', {note})
+});
+
+// Перехід на головну сторінку після збереження нотатки
 
 app.post("/api/notes", async (req, res) => {
     console.log(req.body);
