@@ -1,48 +1,26 @@
-// Елемент списка нотаток
+const addNoteBtn = document.querySelector("#addNoteButton");
+const addListBtn = document.querySelector("#addListButton");
 let notesList = document.getElementById('notesList');
-// console.log(notesList);
-
 let checkList = document.getElementById('checkList');
-console.log(checkList);
+const cardItem = document.getElementById('notesList');
+
+addNoteBtn.addEventListener("click", addNote);
+addListBtn.addEventListener("click", addList);
+cardItem.addEventListener('click', showCard );
 
 function addNote() {
     window.location.href = '/notes';
 }
 
-const addListBtn = document.querySelector("#addListButton");
-addListBtn.addEventListener("click", addList);
-
 function addList() {
     window.location.href = '/listcreate'
 }
 
-addNoteBtn.addEventListener("click", () => {
-    window.location.href = '/notes';
-    let id = Date.now();
-    notesList.appendChild(getCardTemplate(id, "", "", true));
-    getCardBody(id).setAttribute("data-created", "false")
-});
-
-
-// Кнопка Додати список
-
-const addListBtn = document.querySelector("#addListButton");
-addListBtn.addEventListener("click", () => {
-    window.location.href = '/lists'
-});
-
-// Перехід на нотатку по кліку
-
-
-const cardItem = document.getElementById('notesList');
-// console.log(cardItem);
-let cardToRedirect = '.card-body, .card-title, .card-text';
-cardItem.addEventListener('click',  function(e) {
+function showCard(e) {
+    let cardToRedirect = '.card-body, .card-title, .card-text';
     let id = e.target.dataset.id;
     if(e.target.matches(cardToRedirect)){
         console.log(id);
-
-        window.location.href = `/note/:${id}`
+        window.location.href = `note/:${id}`
     }
-});
-
+}
