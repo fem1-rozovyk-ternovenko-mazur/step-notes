@@ -2,7 +2,12 @@
 let notesList = document.getElementById('notesList');
 console.log(notesList);
 
-// Кнопка Додати нотатку
+let checkList = document.getElementById('checkList');
+console.log(checkList);
+
+function addNote() {
+    window.location.href = '/notes';
+}
 
 const addListBtn = document.querySelector("#addListButton");
 addListBtn.addEventListener("click", addList);

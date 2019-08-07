@@ -111,17 +111,21 @@
 }
 
 /*-------------  Notes   --------------*/
+
 .create-note-wrapper{
     display: flex;
     justify-content: center;}
 
 .confirm-exit-wrapper{
     display: flex;
+    justify-content: center;
     align-items: center;
     position: absolute;
     top: 0;
     left: 0;
     z-index: 1000;
+    width: 100vw;
     height: 100vh;
     background: rgba(209, 236, 241, .5);
 }
+
