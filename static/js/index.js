@@ -2,13 +2,6 @@
 let notesList = document.getElementById('notesList');
 console.log(notesList);
 
-let notesList = document.getElementById('notesList');
-notesList.addEventListener('click', function (e) {
-    if (e.target.classList.contains('card-body')){
-        alert('tuta');
-        window.location.href = `notes/${e.target.id}`
-    }
-} );
 let checkList = document.getElementById('checkList');
 console.log(checkList);
 
