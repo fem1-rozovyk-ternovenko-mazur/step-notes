@@ -47,6 +47,30 @@ app.get("/lists", async (req, res) => {
 app.post("/api/notes", async (req, res) => {
     console.log(req.body);
 
+app.get("/", async (req, res)=>{
+    let notes = []
+    await app.db.find({}).forEach((el) => {
+        notes.push(el)
+    });
+    res.render("index", {notes})
+
+});
+
+// Перехід на сторінку нотатки
+
+app.get('/note/:id', async(req, res) => {
+    let note = [];
+    await app.db.find({}).forEach((el) => {
+        return note.push(el)
+    });
+    res.render('note', {note})
+});
+
+// Перехід на головну сторінку після збереження нотатки
+
+app.post("/api/notes", async (req, res) => {
+    console.log(req.body);
+
     try {
         await app.db.insertOne({
             ...req.body,

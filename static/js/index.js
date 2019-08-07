@@ -1,6 +1,6 @@
 // Елемент списка нотаток
 let notesList = document.getElementById('notesList');
-console.log(notesList);
+// console.log(notesList);
 
 let checkList = document.getElementById('checkList');
 console.log(checkList);
@@ -24,10 +24,25 @@ addNoteBtn.addEventListener("click", () => {
 });
 
 
-
 // Кнопка Додати список
 
 const addListBtn = document.querySelector("#addListButton");
 addListBtn.addEventListener("click", () => {
     window.location.href = '/lists'
 });
+
+// Перехід на нотатку по кліку
+
+
+const cardItem = document.getElementById('notesList');
+// console.log(cardItem);
+let cardToRedirect = '.card-body, .card-title, .card-text';
+cardItem.addEventListener('click',  function(e) {
+    let id = e.target.dataset.id;
+    if(e.target.matches(cardToRedirect)){
+        console.log(id);
+
+        window.location.href = `/note/:${id}`
+    }
+});
+
