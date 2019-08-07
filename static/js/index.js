@@ -3,7 +3,7 @@ let notesList = document.getElementById('notesList');
 // console.log(notesList);
 
 let checkList = document.getElementById('checkList');
-console.log(checkList);
+// console.log(checkList);
 
 function addNote() {
     window.location.href = '/notes';
@@ -16,6 +16,7 @@ function addList() {
     window.location.href = '/listcreate'
 }
 
+const addNoteBtn = document.querySelector ('#addNoteButton')
 addNoteBtn.addEventListener("click", () => {
     window.location.href = '/notes';
     let id = Date.now();
@@ -26,7 +27,7 @@ addNoteBtn.addEventListener("click", () => {
 
 // Кнопка Додати список
 
-const addListBtn = document.querySelector("#addListButton");
+// const addListBtn = document.querySelector("#addListButton");
 addListBtn.addEventListener("click", () => {
     window.location.href = '/lists'
 });

@@ -44,8 +44,6 @@ app.get("/lists", async (req, res) => {
     res.render("listcreate")
 });
 
-app.post("/api/notes", async (req, res) => {
-    console.log(req.body);
 
 app.get("/", async (req, res)=>{
     let notes = []
@@ -63,7 +61,7 @@ app.get('/note/:id', async(req, res) => {
     await app.db.find({}).forEach((el) => {
         return note.push(el)
     });
-    res.render('note', {note})
+    res.render('note-detailed', {note})
 });
 
 // Перехід на головну сторінку після збереження нотатки
