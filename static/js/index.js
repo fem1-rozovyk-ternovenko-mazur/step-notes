@@ -1,5 +1,6 @@
-const addNoteBtn = document.querySelector("#addNoteButton");
-addNoteBtn.addEventListener("click", addNote);
+// Елемент списка нотаток
+let notesList = document.getElementById('notesList');
+console.log(notesList);
 
 let notesList = document.getElementById('notesList');
 notesList.addEventListener('click', function (e) {
@@ -22,13 +23,18 @@ function addList() {
     window.location.href = '/listcreate'
 }
 
+addNoteBtn.addEventListener("click", () => {
+    window.location.href = '/notes';
+    let id = Date.now();
+    notesList.appendChild(getCardTemplate(id, "", "", true));
+    getCardBody(id).setAttribute("data-created", "false")
+});
 
 
-//Елемент списка нотаток
-// console.log(notesList);
 
+// Кнопка Додати список
 
-// Кнопка Додати список справ
-// let addList = document.getElementById('addListButton');
-
-//Елемент списка нотаток
+const addListBtn = document.querySelector("#addListButton");
+addListBtn.addEventListener("click", () => {
+    window.location.href = '/lists'
+});
