@@ -129,3 +129,25 @@
     background: rgba(209, 236, 241, .5);
 }
 
+/*-------------  ToDo-List   --------------*/
+
+.item-wrap{
+    display: flex;
+    justify-content: space-between;
+}
+
+.label-wrap{
+    margin-bottom: 0;
+}
+
+.remove{
+    cursor: pointer;
+}
+
+.remove:hover{
+    color: red;
+}
+
+.crossed-text{
+    text-decoration: line-through;
+}
