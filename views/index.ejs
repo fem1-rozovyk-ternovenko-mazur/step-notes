@@ -25,22 +25,23 @@
     <!--Колонка-->
 
     <!--Виведення списку нотаток-->
+
     <div class="card-columns mt-2" id="notesList">
 
         <!--Картка Нотатка-->
 <!--        <% notes.forEach((elem)=>{ %>-->
-        <div class="card" data-type="note">
+        <div class="card" data-type="note" id="cart-item">
             <div class="card-body" id="${id}">
                 <h5 class="card-title"><%= elem.title %></h5>
                 <p class="card-text"><%= elem.text %></p>
-                <button type="button" class="btn btn-danger">Видалити нотатку</button>
+<!--                <button type="button" class="btn btn-danger" id="deleteNoteBtn">Видалити нотатку</button>-->
             </div>
         </div>
 
         <!--Картка Список-->
 <!--        <div class="card" data-type="list" id="checkList">-->
 <!--            <div class="card-body">-->
-<!--                <h5 class="card-title"><%= elem.title %></h5>-->
+<!--                <h5 class="card-title"></h5>-->
 <!--                <div class="input-group mb-3">-->
 <!--                    <div class="input-group-prepend">-->
 <!--                        <div class="input-group-text">-->
