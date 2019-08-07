@@ -35,18 +35,7 @@ app.get("/", async (req, res)=>{
 
 app.get("/notes", async (req, res) => {
 
-    res.render("create-note")
-});
-
-app.post("/notes", async (req, res) => {
-    try {
-        await app.db.insertOne({
-            ...req.body
-        })
-    } catch (err) {
-        console.log(err);
-    }
-    res.json({saved: true});
+    res.render("create-note");
 });
 
 
@@ -55,6 +44,8 @@ app.get("/lists", async (req, res) => {
     res.render("listcreate")
 });
 
+app.post("/api/notes", async (req, res) => {
+    console.log(req.body);
 
 app.get("/", async (req, res)=>{
     let notes = []

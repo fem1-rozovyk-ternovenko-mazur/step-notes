@@ -2,13 +2,11 @@
 const cancelBtn = document.querySelector("#cancelBtn");
 const saveNoteBtn = document.querySelector("#saveNoteBtn");
 
-
 cancelBtn.addEventListener("click", cancelNote);
 saveNoteBtn.addEventListener("click", saveNote);
 
 
 function cancelNote() {
-
     const exitCard = document.createElement("div");
     exitCard.innerHTML = `
                         <div class="confirm-exit-wrapper">
