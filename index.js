@@ -55,19 +55,6 @@ app.get("/lists", async (req, res) => {
     res.render("listcreate")
 });
 
-app.post("/delete", async (req, res) => {
-    // Выводим данные запроса
-    console.log(req.body.id)
-    try {
-        // Удаляем заметку по id
-        await app.db.deleteOne({
-            id: req.body.id
-        })
-    } catch (err) {
-        console.log(err)
-    }
-    res.json({deleted: true})
-})
 
 app.get("/", async (req, res)=>{
     let notes = []
