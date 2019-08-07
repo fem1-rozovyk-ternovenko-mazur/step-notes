@@ -28,28 +28,30 @@
     <div class="card-columns mt-2" id="notesList">
 
         <!--Картка Нотатка-->
+<!--        <% notes.forEach((elem)=>{ %>-->
         <div class="card" data-type="note">
             <div class="card-body">
-                <h5 class="card-title">Card Note Title</h5>
-                <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+                <h5 class="card-title"><%= elem.title %></h5>
+                <p class="card-text"><%= elem.text %></p>
+                <button type="button" class="btn btn-danger">Видалити нотатку</button>
             </div>
         </div>
 
         <!--Картка Список-->
-        <div class="card" data-type="list" id="checkList">
-            <div class="card-body">
-                <h5 class="card-title">Card List Title</h5>
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">
-                            <input type="checkbox" aria-label="Checkbox for following text input">
-                        </div>
-                    </div>
-                    <input type="text" class="form-control" aria-label="Text input with checkbox">
-                </div>
-            </div>
-        </div>
-
+<!--        <div class="card" data-type="list" id="checkList">-->
+<!--            <div class="card-body">-->
+<!--                <h5 class="card-title">Card List Title</h5>-->
+<!--                <div class="input-group mb-3">-->
+<!--                    <div class="input-group-prepend">-->
+<!--                        <div class="input-group-text">-->
+<!--                            <input type="checkbox" aria-label="Checkbox for following text input">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <input type="text" class="form-control" aria-label="Text input with checkbox">-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <% }) %>-->
     </div>
 
 </div>
