@@ -30,9 +30,9 @@
         <!--Картка Нотатка-->
         <% notes.forEach((elem) => { %>
         <div class="card" data-type="<%= elem.type %>" id="<%= elem.id%>">
-            <div class="card-body">
-                <h5 class="card-title"><%= elem.title %></h5>
-                <p class="card-text"> <%= elem.text %>.</p>
+            <div class="card-body" data-id="<%= elem.id %>">
+                <h5 class="card-title" data-id="<%= elem.id %>"> <%= elem.title %> </h5>
+                <p class="card-text" data-id="<%= elem.id %>" > <%= elem.text %>.</p>
             </div>
         </div>
         <% })%>

@@ -2,12 +2,8 @@ const addNoteBtn = document.querySelector("#addNoteButton");
 addNoteBtn.addEventListener("click", addNote);
 
 let notesList = document.getElementById('notesList');
-notesList.addEventListener('click', function (e) {
-    if (e.target.classList.contains('card-body')){
-        alert('tuta');
-        window.location.href = `notes/${e.target.id}`
-    }
-} );
+console.log(notesList);
+
 let checkList = document.getElementById('checkList');
 console.log(checkList);
 
@@ -22,6 +18,17 @@ function addList() {
     window.location.href = '/listcreate'
 }
 
+const cardItem = document.getElementById('notesList');
+// console.log(cardItem);
+let cardToRedirect = '.card-body, .card-title, .card-text';
+cardItem.addEventListener('click',  function(e) {
+    let id = e.target.dataset.id;
+    if(e.target.matches(cardToRedirect)){
+        console.log(id);
+
+        window.location.href = `/note/:${id}`
+    }
+});
 
 
 //Елемент списка нотаток

@@ -42,18 +42,25 @@ app.get("/notes", async (req, res) => {
     res.render("create-note");
 });
 
-app.get(`notes/:id`, async (req, res) => {
+// app.get(`notes/:id`, async (req, res) => {
+//
+//     let note;
+//
+//     await app.db.find({id:req.params.id}).forEach((el) => {
+//         note = el
+//     }) ;
+//
+//     res.render('note-detailed')
+// });
 
-    let note;
-
+// Перехід на сторінку нотатки
+app.get('/note/:id', async(req, res) => {
+    let note = [];
     await app.db.find({id:req.params.id}).forEach((el) => {
-        note = el
-    }) ;
-
-    res.render('note-detailed')
+        return note.push(el)
+    });
+    res.render('note-detailed', {note})
 });
-
-
 
 
 app.get("/lists", async (req, res) => {
