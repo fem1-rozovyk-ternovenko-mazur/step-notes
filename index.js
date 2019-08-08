@@ -74,8 +74,6 @@ app.post("/api/notes", async (req, res) => {
 
 // Отримання списків на головну сторінку
 
-// db.inventory.find({type: "list"})
-
 app.get("/", async (req, res)=>{
     let lists = []
     await app.db.find({type: "list"}).forEach((el) => {
