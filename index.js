@@ -21,6 +21,8 @@ app.use(express.static(__dirname + "/static"));
 
 app.set("view engine", "ejs");
 
+// Отримання нотаток на головну сторінку
+
 app.get("/", async (req, res)=>{
     let notes = []
     await app.db.find({}).forEach((el) => {
@@ -29,12 +31,14 @@ app.get("/", async (req, res)=>{
     res.render("index", {notes})
 });
 
+// Перехід на сторінку створення нотатки
 
 app.get("/notes", async (req, res) => {
 
     res.render("create-note");
 });
 
+// Перехід на сторінку створення списку
 
 app.get("/lists", async (req, res) => {
 
@@ -42,6 +46,7 @@ app.get("/lists", async (req, res) => {
 });
 
 // Перехід на сторінку нотатки
+
 app.get('/notes/:id', async(req, res) => {
     let nts;
     // NB! Внимательно следи в каком виде приходит критерий для поиска по базе: строкой или числом
@@ -65,6 +70,18 @@ app.post("/api/notes", async (req, res) => {
         console.log(err);
     }
     res.json({created:true})
+});
+
+// Отримання списків на головну сторінку
+
+// db.inventory.find({type: "list"})
+
+app.get("/", async (req, res)=>{
+    let lists = []
+    await app.db.find({type: "list"}).forEach((el) => {
+        lists.push(el)
+    });
+    res.render("index", {lists})
 });
 
 app.listen(port, ()=>{
