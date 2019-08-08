@@ -72,10 +72,19 @@ app.post("/api/notes", async (req, res) => {
     res.json({created:true})
 });
 
+app.delete("/api/notes/:id", async (req, res) => {
+    try{
+        await app.db.deleteOne({id:req.body.id})
+    } catch (err) {
+        console.log(err);
+    }
+    res.json({deleted:true})
+});
+
 // Отримання списків на головну сторінку
 
 app.get("/", async (req, res)=>{
-    let lists = []
+    let lists = [];
     await app.db.find({type: "list"}).forEach((el) => {
         lists.push(el)
     });

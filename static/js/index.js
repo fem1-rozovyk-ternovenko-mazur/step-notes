@@ -16,12 +16,9 @@ function addList() {
     window.location.href = '/listcreate'
 }
 
-const addNoteBtn = document.querySelector ('#addNoteButton')
+const addNoteBtn = document.querySelector ('#addNoteButton');
 addNoteBtn.addEventListener("click", () => {
     window.location.href = '/notes';
-    let id = Date.now();
-    notesList.appendChild(getCardTemplate(id, "", "", true));
-    getCardBody(id).setAttribute("data-created", "false")
 });
 
 

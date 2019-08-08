@@ -5,7 +5,6 @@ const saveNoteBtn = document.querySelector("#saveNoteBtn");
 cancelBtn.addEventListener("click", cancelNote);
 saveNoteBtn.addEventListener("click", saveNote);
 
-
 function cancelNote() {
     const exitCard = document.createElement("div");
     exitCard.innerHTML = `
