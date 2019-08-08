@@ -72,6 +72,9 @@ app.post("/api/notes", async (req, res) => {
     res.json({created:true})
 });
 
+// Перехід на сторінку списка
+
+
 // Отримання списків на головну сторінку
 
 app.get("/", async (req, res)=>{
