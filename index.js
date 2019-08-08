@@ -20,7 +20,6 @@ client.connect(err => {
 app.use(express.static(__dirname + "/static"));
 
 app.set("view engine", "ejs");
-
 // Отримання нотаток на головну сторінку
 
 app.get("/", async (req, res)=>{
@@ -36,13 +35,6 @@ app.get("/", async (req, res)=>{
 app.get("/notes", async (req, res) => {
 
     res.render("create-note");
-});
-
-// Перехід на сторінку створення списку
-
-app.get("/lists", async (req, res) => {
-
-    res.render("listcreate")
 });
 
 // Перехід на сторінку нотатки
@@ -82,6 +74,27 @@ app.get("/", async (req, res)=>{
     res.render("index", {lists})
 });
 
+
+
+/* === === To-do Discrit === ===*/
+
+// Перехід на сторінку створення списку
+
+app.get("/lists", async (req, res) => {
+    res.render("listcreate")
+});
+//временная ссылка на карточку со списком -- http://localhost:3000/api/lists/1565276371189
+app.get("/api/lists/:id", async (req, res) => {
+        let list;
+        let targetID = Number(req.params.id);
+    await app.db.find({id:targetID}).forEach((e) => {
+            list = e;
+        });
+        res.render('list-detailed', {list} )
+});
+
+
+
 //Перехід на головну сторінку після збереження списка справ
 app.post("/api/lists", async (req, res) => {
     console.log(req.body);
@@ -95,6 +108,9 @@ app.post("/api/lists", async (req, res) => {
     }
     res.json({created:true})
 });
+
+
+
 // Перевірка роботи сервера
 
 app.listen(port, ()=>{

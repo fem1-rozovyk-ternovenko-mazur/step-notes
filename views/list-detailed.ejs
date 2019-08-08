@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <%- include('components/head') %>
+
+    <title>Your List</title>
+</head>
+<body>
+<h2 class="welcome-title">
+    Тут може бути ваш Todo список
+</h2>
+
+<%- include('components/cat')%>
+
+<div class="container">
+    <div class="card" style="width: 25rem;">
+        <div class="card-body">
+            <h5 class="card-title"> <%= list.title %></h5>
+            <p class="card-text"> <%= list.body[0] %></p>
+            <button class="btn btn-danger" id="cancelNewList">Охрана, Видали цю погань!! </button>
+            <a href="/" class="btn btn-primary">Нi, я передумав, пiду на головну</a>
+            <button class="btn btn-success"  id="saveNewList"> Яна! Переписуй! </button>
+        </div>
+    </div>
+</div>
+<script src="../../js/lists.js"></script>
+</body>
+</html>
