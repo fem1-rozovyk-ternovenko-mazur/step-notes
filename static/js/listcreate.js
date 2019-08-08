@@ -6,28 +6,18 @@ const listTitle = document.querySelector('.list-title');
 
 
 cancelNewList.addEventListener('click', function(){
-//нужна ф-ция  очистить массив с заполненными пунктами, а так же очистить инпуты названия заметки и пункт
-    clearInputItem();
     cancelNote();
-
 });
 
 saveNewList.addEventListener('click', function(){
-//нужна ф-ция  послать запрос на запись заметки в БД, а так же очистить инпуты нзвания заметки и пункт
-
     //если пользователь не внес название списка, вываливать предупреждение об ошибке
     if (listTitle.value ===""){
         alert("Треба заповнити назву списку")
     }else {
-        //перейти на гавную стараницу
-        window.location.href ="/";
+        //сохранить список и перейти на главную стараницу
+        saveNote();
     }
-
-
 });
-
-
-
 
 addNewItem.addEventListener('click', function () {
     let valueListItem = document.querySelector('#writeListItem').value;
@@ -36,8 +26,8 @@ addNewItem.addEventListener('click', function () {
     let listText = document.createTextNode(valueListItem);
     let label = document.createElement('label');
     let spanRemove = document.createElement('span');
-    div.className = "list-group-item item-wrap"; /*- можно вносить строкой все нужные классы*/
-    label.className = 'label-wrap';
+    div.className = "list-group-item item-wrap";
+        label.className = 'label-wrap';
     checkbox.type = 'checkbox';
     checkbox.name = 'check';
     checkbox.className = 'mr-3';
@@ -82,8 +72,9 @@ function clearInputItem() {
 function cancelNote() {
     const exitCard = document.createElement("div");
     exitCard.className = "confirm-exit-wrapper-list";
-    let height = document.querySelector('.container').offsetHeight+25;
-    console.log(height);
+    let container = document.querySelector('.container');
+    let height = container.offsetHeight;
+    height += 10;
     exitCard.style.height = `${height}px`;
     exitCard.innerHTML = `<div class="alert alert-info text-center text-dark">
                                 <span> Точно НЕ ЗБЕРІГАТИ список справ? </span>
@@ -103,6 +94,10 @@ function cancelNote() {
 
     confirmExitBtn.addEventListener('click', function () {
         //перейти на гавную стараницу
+        (function clearAllInputs() {
+            document.querySelector('.list-title').value = null;
+            clearInputItem();
+        })();
         window.location.href = "/";
     });
 
@@ -112,8 +107,39 @@ function cancelNote() {
 }
 
 //формирование объекта созданной карточки
+async function saveNote() {
+    let id = Date.now();
+    let listTitle = document.querySelector(".list-title").value;
+    let listItem = [];
+    let listArea = document.querySelectorAll('.label-wrap');
 
+    for(let i=0; i<listArea.length; i++){
+        let temp ={};
+        let textItem = listArea[i].textContent;
+        let check = listArea[i].firstChild.checked;
+        temp.todo =  textItem;
+        temp.check =  check;
+        listItem.push(temp);
+    }
 
+    let data = {
+        id: id,
+        type: "list",
+        title: listTitle,
+        body: listItem,
+    };
+    let req = await fetch('http://localhost:3000/api/lists', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+        });
+        let answer = await req.json();
+        if (answer.created){
+            window.location.href = '/'
+        }
+}
 
 
 //tак будет выглядеть объект созданной карточки

@@ -91,6 +91,19 @@ app.get("/", async (req, res)=>{
     res.render("index", {lists})
 });
 
+//Перехід на головну сторінку після збереження списка справ
+app.post("/api/lists", async (req, res) => {
+    console.log(req.body);
+
+    try {
+        await app.db.insertOne({
+            ...req.body,
+        })
+    } catch (err) {
+        console.log(err);
+    }
+    res.json({created:true})
+});
 // Перевірка роботи сервера
 
 app.listen(port, ()=>{
