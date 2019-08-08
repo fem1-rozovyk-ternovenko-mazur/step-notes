@@ -82,6 +82,8 @@ app.get("/", async (req, res)=>{
     res.render("index", {lists})
 });
 
+// Перевірка роботи сервера
+
 app.listen(port, ()=>{
     console.log("hello in console")
 });
