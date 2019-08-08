@@ -6,10 +6,7 @@ const listTitle = document.querySelector('.list-title');
 
 
 cancelNewList.addEventListener('click', function(){
-//нужна ф-ция  очистить массив с заполненными пунктами, а так же очистить инпуты названия заметки и пункт
-    clearInputItem();
     cancelNote();
-
 });
 
 saveNewList.addEventListener('click', function(){
@@ -17,7 +14,7 @@ saveNewList.addEventListener('click', function(){
     if (listTitle.value ===""){
         alert("Треба заповнити назву списку")
     }else {
-        //сохранить список и перейти на гавную стараницу
+        //сохранить список и перейти на главную стараницу
         saveNote();
     }
 });
@@ -78,7 +75,6 @@ function cancelNote() {
     let container = document.querySelector('.container');
     let height = container.offsetHeight;
     height += 10;
-    console.log(height);
     exitCard.style.height = `${height}px`;
     exitCard.innerHTML = `<div class="alert alert-info text-center text-dark">
                                 <span> Точно НЕ ЗБЕРІГАТИ список справ? </span>
@@ -98,6 +94,10 @@ function cancelNote() {
 
     confirmExitBtn.addEventListener('click', function () {
         //перейти на гавную стараницу
+        (function clearAllInputs() {
+            document.querySelector('.list-title').value = null;
+            clearInputItem();
+        })();
         window.location.href = "/";
     });
 
@@ -128,7 +128,6 @@ async function saveNote() {
         title: listTitle,
         body: listItem,
     };
-    console.log(data);
     let req = await fetch('http://localhost:3000/api/lists', {
             method: "POST",
             headers: {
