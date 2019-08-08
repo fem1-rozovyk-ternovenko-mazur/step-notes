@@ -43,7 +43,7 @@ cardItem.addEventListener('click',  function(e) {
     if(e.target.matches(cardToRedirect)){
         console.log(id);
 
-        window.location.href = `/note/:${id}`
+        window.location.href = `/notes/${id}`
     }
 });
 
