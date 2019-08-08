@@ -131,6 +131,19 @@
 
 /*-------------  ToDo-List   --------------*/
 
+.confirm-exit-wrapper-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: 1000;
+    width: 100vw;
+    background: rgba(209, 236, 241, .5);
+}
 .item-wrap{
     display: flex;
     justify-content: space-between;
@@ -150,4 +163,7 @@
 
 .crossed-text{
     text-decoration: line-through;
+    color: green;
+    margin-bottom: 0;
+
 }
