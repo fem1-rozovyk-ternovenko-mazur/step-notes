@@ -4,7 +4,6 @@ const deleteNoteBtn = document.querySelector("#deleteNoteBtn");
 let target = document.querySelector(".card");
 let targetID = Number(target.id);
 // alert (typeof targetID);
-alert (nts)
 
 editNoteBtn.addEventListener("click", editNote);
 deleteNoteBtn.addEventListener("click", confirmNoteDeletion);
