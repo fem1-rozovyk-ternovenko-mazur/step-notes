@@ -44,3 +44,15 @@ cardItem.addEventListener('click',  function(e) {
     }
 });
 
+// Перехід на список по кліку
+
+// const cardItem = document.getElementById('notesList');
+
+let listToRedirect = '.card-body, .card-title, .card-text, .list-item, .list-group, .list-group-item';
+cardItem.addEventListener('click',  function(e) {
+    let id = e.target.dataset.id;
+    if(e.target.matches(listToRedirect)){
+        console.log(id);
+        window.location.href = `/lists/${id}`
+    }
+});

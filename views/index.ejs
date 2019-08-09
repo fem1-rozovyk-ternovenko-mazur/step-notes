@@ -29,7 +29,6 @@
     <div class="card-columns mt-2" id="notesList">
 
         <!--Картка Нотатка-->
-        <!--Картка Нотатка-->
         <% notes.forEach((elem) => { %>
             <div class="card" data-type="<%= elem.type %>" id="<%= elem.id%>">
                 <div class="card-body" data-id="<%= elem.id %>">
@@ -37,7 +36,7 @@
                     <% if (elem.body) { %>
                         <div class="body" data-id="<%= elem.id %>">
                             <% elem.body.forEach(input => { %>
-                                <li class="list-item"><%= input.todo %> <%= input.check %></li>
+                                <li class="list-item" data-id="<%= elem.id %>"><%= input.todo %> <%= input.check %></li>
                             <% }) %>
 
                         </div>

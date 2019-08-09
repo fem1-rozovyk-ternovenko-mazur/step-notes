@@ -141,13 +141,3 @@ async function saveNote() {
         }
 
 }
-
-
-//tак будет выглядеть объект созданной карточки
-/*
-{
-    id:"",
-    type: "list",
-    title: "",
-    body:[{text:"", checked: false/true}],
-}*/
