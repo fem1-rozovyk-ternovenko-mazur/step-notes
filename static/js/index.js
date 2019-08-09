@@ -29,30 +29,30 @@ addListBtn.addEventListener("click", () => {
     window.location.href = '/lists'
 });
 
-// Перехід на нотатку по кліку
+// Перехід на нотатку/список по кліку
 
 
 const cardItem = document.getElementById('notesList');
-// console.log(cardItem);
 let cardToRedirect = '.card-body, .card-title, .card-text';
-cardItem.addEventListener('click',  function(e) {
-    let id = e.target.dataset.id;
-    if(e.target.matches(cardToRedirect)){
-        console.log(id);
-
-        window.location.href = `/notes/${id}`
-    }
-});
-
-// Перехід на список по кліку
-
-// const cardItem = document.getElementById('notesList');
-
 let listToRedirect = '.card-body, .card-title, .card-text, .list-item, .list-group, .list-group-item';
-cardItem.addEventListener('click',  function(e) {
-    let id = e.target.dataset.id;
-    if(e.target.matches(listToRedirect)){
-        console.log(id);
-        window.location.href = `/lists/${id}`
+
+cardItem.addEventListener('click', function (e) {
+    let target = e.target.closest('.card');
+    console.log(target);
+    if (target.dataset.type === "note") {
+
+        let id = e.target.dataset.id;
+        if (e.target.matches(cardToRedirect)) {
+            window.location.href = `/notes/${id}`
+        }
+    }
+
+    if (target.dataset.type === "list") {
+        let id = e.target.dataset.id;
+        if (e.target.matches(listToRedirect)) {
+            window.location.href = `/lists/${id}`
+        }
     }
 });
+
+
