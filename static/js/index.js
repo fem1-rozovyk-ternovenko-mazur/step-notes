@@ -16,7 +16,7 @@ function addList() {
     window.location.href = '/listcreate'
 }
 
-const addNoteBtn = document.querySelector ('#addNoteButton')
+const addNoteBtn = document.querySelector ('#addNoteButton');
 addNoteBtn.addEventListener("click", () => {
     window.location.href = '/notes';
 });

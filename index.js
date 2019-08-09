@@ -25,16 +25,10 @@ app.set("view engine", "ejs");
 
 app.get("/", async (req, res)=>{
     let notes = []
-    await app.db.find({type: "note"}).forEach((elem) => {
-        notes.push(elem)
+    await app.db.find({}).forEach((el) => {
+        notes.push(el)
     });
-
-    let lists = []
-    await app.db.find({type: "list"}).forEach((elem) => {
-        notes.push(elem)
-    });
-
-    res.render("index", {notes, lists})
+    res.render("index", {notes})
 });
 
 // Перехід на сторінку створення нотатки
@@ -58,12 +52,10 @@ app.get('/notes/:id', async(req, res) => {
     // NB! Внимательно следи в каком виде приходит критерий для поиска по базе: строкой или числом
     let targetID = Number(req.params.id);
     await app.db.find({id:targetID}).forEach((elem) => {
-            nts = elem
+        nts = elem
     });
     res.render('note-detailed', {nts})
 });
-
-
 
 // Перехід на головну сторінку після збереження нотатки
 
@@ -80,13 +72,19 @@ app.post("/api/notes", async (req, res) => {
     res.json({created:true})
 });
 
-// Перехід на сторінку списка
-
+app.delete("/api/notes/:id", async (req, res) => {
+    try{
+        await app.db.deleteOne({id:req.body.id})
+    } catch (err) {
+        console.log(err);
+    }
+    res.json({deleted:true})
+});
 
 // Отримання списків на головну сторінку
 
 // app.get("/", async (req, res)=>{
-//     let lists = []
+//     let lists = [];
 //     await app.db.find({type: "list"}).forEach((el) => {
 //         lists.push(el)
 //     });
@@ -106,12 +104,6 @@ app.post("/api/lists", async (req, res) => {
     }
     res.json({created:true})
 });
-
-app.post('/', function(req, res) {
-    let arr = [];
-    res.render('index.ejs', {arr: arr});
-});
-
 // Перевірка роботи сервера
 
 app.listen(port, ()=>{
