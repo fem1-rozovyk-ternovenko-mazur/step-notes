@@ -139,6 +139,7 @@ async function saveNote() {
         if (answer.created){
             window.location.href = '/'
         }
+
 }
 
 

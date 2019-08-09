@@ -34,7 +34,16 @@
             <div class="card" data-type="<%= elem.type %>" id="<%= elem.id%>">
                 <div class="card-body" data-id="<%= elem.id %>">
                     <h5 class="card-title" data-id="<%= elem.id %>"> <%= elem.title %> </h5>
-                    <p class="card-text" data-id="<%= elem.id %>" > <%= elem.text %></p>
+                    <% if (elem.body) { %>
+                        <div class="body" data-id="<%= elem.id %>">
+                            <% elem.body.forEach(input => { %>
+                                <li class="list-item"><%= input.todo %> <%= input.check %></li>
+                            <% }) %>
+
+                        </div>
+                    <% } else { %>
+                        <p class="card-text" data-id="<%= elem.id %>" > <%= elem.text %></p>
+                    <% } %>
 
                 </div>
             </div>

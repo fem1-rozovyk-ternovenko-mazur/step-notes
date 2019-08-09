@@ -5,11 +5,10 @@ const saveNoteBtn = document.querySelector("#saveNoteBtn");
 cancelBtn.addEventListener("click", cancelNote);
 saveNoteBtn.addEventListener("click", saveNote);
 
-
 function cancelNote() {
     const exitCard = document.createElement("div");
     exitCard.innerHTML = `
-                        <div class="confirm-exit-wrapper">
+                        <div class="confirm-wrapper">
                             <div class="alert alert-info text-center text-dark">
                                 <span> Точно НЕ ЗБЕРІГАТИ нотатку? </span>
                                 <div class="row mt-3">
