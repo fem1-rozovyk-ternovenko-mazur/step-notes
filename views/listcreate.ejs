@@ -16,19 +16,35 @@
 
 <%- include('components/cat')%>
     <div class="container">
-        <div class="form-group">
-            <input type="text" class="form-control list-title" placeholder="Створи ім'я свого списка">
-        </div>
-        <div class="form-group">
-            <p><button type="button" class="btn btn-primary" id="addNewItem">Додати пункт</button></p>
-            <input type="text" class="form-control" id="writeListItem" placeholder="Захопити світ, випити кави, знайти кота">
-        </div>
-        <div id="listArea" class="m-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <button class="btn btn-danger" id="cancelNewList">Відміна</button>
+                    </div>
+                    <div class="col text-right">
+                        <button class="btn btn-success"  id="saveNewList">Зберегти</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3 mt-3">
+                            <input type="text" class="form-control list-title" placeholder="Створи ім'я свого списка">
+                    </div>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-info" type="button" id="addNewItem">Додати пункт</button>
+                        </div>
+                        <input type="text" class="form-control" id="writeListItem" placeholder="Захопити світ ..." aria-describedby="button-addon1">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-flush" id="listArea"></ul>
+                    </div>
+                </div>
 
+            </div>
         </div>
-        <button class="btn btn-danger" id="cancelNewList">Охрана, Атмєна! </button>
-        <button class="btn btn-success"  id="saveNewList"> Яна! Записуй! </button>
-
     </div>
     <script src="/js/listcreate.js"></script>
 

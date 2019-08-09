@@ -21,12 +21,12 @@ saveNewList.addEventListener('click', function(){
 
 addNewItem.addEventListener('click', function () {
     let valueListItem = document.querySelector('#writeListItem').value;
-    let div = document.createElement('div');
+    let li = document.createElement('li');
     let checkbox = document.createElement("input");
     let listText = document.createTextNode(valueListItem);
     let label = document.createElement('label');
     let spanRemove = document.createElement('span');
-    div.className = "list-group-item item-wrap";
+    li.className = "list-group-item item-wrap";
         label.className = 'label-wrap';
     checkbox.type = 'checkbox';
     checkbox.name = 'check';
@@ -35,12 +35,12 @@ addNewItem.addEventListener('click', function () {
     spanRemove.innerText = "X";
     label.appendChild(checkbox);
     label.appendChild(listText);
-    div.appendChild(label);
-    div.appendChild(spanRemove);
+    li.appendChild(label);
+    li.appendChild(spanRemove);
     if (valueListItem === ""){
         alert("Порожній рядок не можна вносити!")
     }else{
-        listArea.appendChild(div);
+        listArea.appendChild(li);
     }
     clearInputItem();
 });
