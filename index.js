@@ -25,10 +25,16 @@ app.set("view engine", "ejs");
 
 app.get("/", async (req, res)=>{
     let notes = []
-    await app.db.find({}).forEach((el) => {
-        notes.push(el)
+    await app.db.find({type: "note"}).forEach((elem) => {
+        notes.push(elem)
     });
-    res.render("index", {notes})
+
+    let lists = []
+    await app.db.find({type: "list"}).forEach((elem) => {
+        notes.push(elem)
+    });
+
+    res.render("index", {notes, lists})
 });
 
 // Перехід на сторінку створення нотатки
@@ -57,6 +63,8 @@ app.get('/notes/:id', async(req, res) => {
     res.render('note-detailed', {nts})
 });
 
+
+
 // Перехід на головну сторінку після збереження нотатки
 
 app.post("/api/notes", async (req, res) => {
@@ -77,13 +85,13 @@ app.post("/api/notes", async (req, res) => {
 
 // Отримання списків на головну сторінку
 
-app.get("/", async (req, res)=>{
-    let lists = []
-    await app.db.find({type: "list"}).forEach((el) => {
-        lists.push(el)
-    });
-    res.render("index", {lists})
-});
+// app.get("/", async (req, res)=>{
+//     let lists = []
+//     await app.db.find({type: "list"}).forEach((el) => {
+//         lists.push(el)
+//     });
+//     res.render("index", {lists})
+// });
 
 //Перехід на головну сторінку після збереження списка справ
 app.post("/api/lists", async (req, res) => {
@@ -98,6 +106,12 @@ app.post("/api/lists", async (req, res) => {
     }
     res.json({created:true})
 });
+
+app.post('/', function(req, res) {
+    let arr = [];
+    res.render('index.ejs', {arr: arr});
+});
+
 // Перевірка роботи сервера
 
 app.listen(port, ()=>{
