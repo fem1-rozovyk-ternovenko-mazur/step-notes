@@ -21,7 +21,7 @@ app.use(express.static(__dirname + "/static"));
 
 app.set("view engine", "ejs");
 
-// Отримання нотаток на головну сторінку
+// Отримання всіх записів на головну сторінку
 
 app.get("/", async (req, res)=>{
     let notes = []
@@ -30,6 +30,17 @@ app.get("/", async (req, res)=>{
     });
     res.render("index", {notes})
 });
+
+// Отримання списків на головну сторінку
+
+// app.get("/", async (req, res)=>{
+//     let lists = [];
+//     await app.db.find({type: "list"}).forEach((el) => {
+//         lists.push(el)
+//     });
+//     console.log(lists);
+//     res.render("index", {lists})
+// });
 
 // Перехід на сторінку створення нотатки
 
@@ -81,15 +92,7 @@ app.delete("/api/notes/:id", async (req, res) => {
     res.json({deleted:true})
 });
 
-// Отримання списків на головну сторінку
 
-// app.get("/", async (req, res)=>{
-//     let lists = [];
-//     await app.db.find({type: "list"}).forEach((el) => {
-//         lists.push(el)
-//     });
-//     res.render("index", {lists})
-// });
 
 //Перехід на головну сторінку після збереження списка справ
 app.post("/api/lists", async (req, res) => {
