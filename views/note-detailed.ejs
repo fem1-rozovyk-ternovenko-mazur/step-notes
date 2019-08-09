@@ -17,16 +17,20 @@
 <%- include('components/cat')%>
 
 <div class="container">
-    <div class="card" style="width: 18rem;" id="<%= nts.id %>" >
+    <div class="card" id="<%= nts.id %>" >
         <div class="card-body">
             <div class="text-right">
                 <button type="button" class="btn btn-danger mb-3" id="deleteNoteBtn"> Delete </button>
             </div>
-            <h5 class="card-title"> <%= nts.title %> </h5>
-            <p class="card-text"> <%= nts.text %></p>
-            <div class="row">
+            <div id="noteTitleContainer">
+                <h5 class="card-title" id="noteTitle"> <%= nts.title %> </h5>
+            </div>
+            <div class="mb-3" id="noteTxtContainer">
+                <p class="card-text" id="noteTxt"> <%= nts.text %></p>
+            </div>
+            <div class="row" id="bottomBtnContainer">
                 <div class="col">
-                    <a href="/" class="btn btn-primary">Go back</a>
+                    <a href="/" class="btn btn-primary" id="returnToMain">Go back</a>
                 </div>
                 <div class="col text-right">
                     <button class="btn btn-warning" id="editNoteBtn">Edit</button>
