@@ -52,7 +52,7 @@ app.get('/notes/:id', async(req, res) => {
     // NB! Внимательно следи в каком виде приходит критерий для поиска по базе: строкой или числом
     let targetID = Number(req.params.id);
     await app.db.find({id:targetID}).forEach((elem) => {
-            nts = elem
+        nts = elem
     });
     res.render('note-detailed', {nts})
 });
@@ -83,13 +83,13 @@ app.delete("/api/notes/:id", async (req, res) => {
 
 // Отримання списків на головну сторінку
 
-app.get("/", async (req, res)=>{
-    let lists = [];
-    await app.db.find({type: "list"}).forEach((el) => {
-        lists.push(el)
-    });
-    res.render("index", {lists})
-});
+// app.get("/", async (req, res)=>{
+//     let lists = [];
+//     await app.db.find({type: "list"}).forEach((el) => {
+//         lists.push(el)
+//     });
+//     res.render("index", {lists})
+// });
 
 //Перехід на головну сторінку після збереження списка справ
 app.post("/api/lists", async (req, res) => {
