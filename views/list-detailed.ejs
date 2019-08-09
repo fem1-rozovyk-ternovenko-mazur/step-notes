@@ -25,7 +25,13 @@
             </div>
                     <h3 class="card-title text-center"> <%= list.title %></h3>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> <%= list.body[0] %></li>
+                        <% list.body.forEach(item => { %>
+                        <% if(item.check) { %>
+                                <li class="list-group-item crossed-text"> <%= item.todo %></li>
+                        <% } else{%>
+                                <li class="list-group-item"> <%= item.todo %></li>
+                            <% } %>
+                        <% }) %>
                     </ul>
 
 
@@ -62,8 +68,7 @@
                 </div>
         </div>
     </div>
-
-
+</div>
 </div>
 <script src="../../js/lists.js"></script>
 </body>
