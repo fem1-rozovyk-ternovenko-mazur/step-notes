@@ -64,6 +64,42 @@ listArea.addEventListener('click', function (e) {
     }
 });
 
+//формирование объекта созданной карточки
+async function saveNote() {
+    let id = Date.now();
+    let listTitle = document.querySelector(".list-title").value;
+    let listItem = [];
+    let listArea = document.querySelectorAll('.label-wrap');
+
+    for(let i=0; i<listArea.length; i++){
+        let temp ={};
+        let textItem = listArea[i].textContent;
+        let check = listArea[i].firstChild.checked;
+        temp.todo =  textItem;
+        temp.check =  check;
+        listItem.push(temp);
+    }
+    sortByStatus(listItem);
+    let data = {
+        id: id,
+        type: "list",
+        title: listTitle,
+        body: listItem,
+    };
+    let req = await fetch('http://localhost:3000/api/lists', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+        });
+        let answer = await req.json();
+        if (answer.created){
+            window.location.href = '/'
+        }
+
+}
+
 function clearInputItem() {
     document.querySelector('#writeListItem').value = null;
 }
@@ -106,38 +142,7 @@ function cancelNote() {
     })
 }
 
-//формирование объекта созданной карточки
-async function saveNote() {
-    let id = Date.now();
-    let listTitle = document.querySelector(".list-title").value;
-    let listItem = [];
-    let listArea = document.querySelectorAll('.label-wrap');
-
-    for(let i=0; i<listArea.length; i++){
-        let temp ={};
-        let textItem = listArea[i].textContent;
-        let check = listArea[i].firstChild.checked;
-        temp.todo =  textItem;
-        temp.check =  check;
-        listItem.push(temp);
-    }
-
-    let data = {
-        id: id,
-        type: "list",
-        title: listTitle,
-        body: listItem,
-    };
-    let req = await fetch('http://localhost:3000/api/lists', {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(data),
-        });
-        let answer = await req.json();
-        if (answer.created){
-            window.location.href = '/'
-        }
-
+// отмеченные пункты списка показывай внизу списка
+function sortByStatus(e){
+    e.sort((a, b) => a.check > b.check ? 1 : -1);
 }
