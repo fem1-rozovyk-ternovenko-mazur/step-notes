@@ -16,14 +16,14 @@
 <%- include('components/cat')%>
 
 <div class="container">
-    <div class="card">
+    <div class="card" id="<%= list.id%>">
         <div class="card-body">
             <div class="row">
                 <div class="col text-right">
                     <button class="btn btn-danger mb-2" id="deleteList">Видалити</button>
                 </div>
             </div>
-                    <h3 class="card-title text-center"> </h3>
+                    <h3 class="card-title text-center"><%= list.title %> </h3>
                     <ul class="list-group list-group-flush">
                         <% list.body.forEach(item => { %>
                             <% if(item.check) { %>
