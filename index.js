@@ -20,7 +20,8 @@ client.connect(err => {
 app.use(express.static(__dirname + "/static"));
 
 app.set("view engine", "ejs");
-// Отримання нотаток на головну сторінку
+
+// Отримання записів із бази на головну сторінку
 
 app.get("/", async (req, res)=>{
     let notes = []
@@ -75,6 +76,8 @@ app.post("/api/notes", async (req, res) => {
     res.json({created:true})
 });
 
+// Видалення нотатки
+
 app.delete("/api/notes/:id", async (req, res) => {
     try{
         await app.db.deleteOne({id:req.body.id})
@@ -84,9 +87,6 @@ app.delete("/api/notes/:id", async (req, res) => {
     res.json({deleted:true})
 });
 
-
-
-/* === === To-do Discrit === ===*/
 
 // Перехід на сторінку створення списку
 
@@ -104,8 +104,22 @@ app.get("/lists/:id", async (req, res) => {
 });
 
 
+// Перехід на сторінку списка справ
+
+app.get('/lists/:id', async(req, res) => {
+    let list;
+    // NB! Внимательно следи в каком виде приходит критерий для поиска по базе: строкой или числом
+    let targetID = Number(req.params.id);
+    await app.db.find({id:targetID}).forEach((elem) => {
+        list = elem
+    });
+    res.render('list-detailed', {list})
+    // res.send(req.params.id)
+});
+
 
 //Перехід на головну сторінку після збереження списка справ
+
 app.post("/api/lists", async (req, res) => {
     console.log(req.body);
 
