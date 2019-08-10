@@ -84,6 +84,16 @@ app.delete("/api/notes/:id", async (req, res) => {
     res.json({deleted:true})
 });
 
+app.route("/api/notes/:id", async (req, res) => {
+    let targetID = Number(req.body.id);
+    try {
+        await app.db.updateOne({id: targetID});
+    } catch (err) {
+        console.log(err);
+    }
+    res.json ({edited:true})
+});
+
 
 
 /* === === To-do Discrit === ===*/

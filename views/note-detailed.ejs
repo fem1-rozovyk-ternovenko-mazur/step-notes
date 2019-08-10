@@ -28,14 +28,14 @@
             <div class="mb-3" id="noteTxtContainer">
                 <p class="card-text" id="noteTxt"> <%= nts.text %></p>
             </div>
-            <div class="row" id="bottomBtnContainer">
-                <div class="col">
-                    <a href="/" class="btn btn-primary" id="returnToMain">Go back</a>
+                <div class="row" id="bottomBtnsContainer">
+                    <div class="col" id="leftBottomBtn">
+                        <a href="/" class="btn btn-primary" id="returnToMain">Go back</a>
+                    </div>
+                    <div class="col text-right" id="rightBottomBtn">
+                        <button class="btn btn-warning" id="editNoteBtn">Edit</button>
+                    </div>
                 </div>
-                <div class="col text-right">
-                    <button class="btn btn-warning" id="editNoteBtn">Edit</button>
-                </div>
-            </div>
         </div>
     </div>
 </div>
