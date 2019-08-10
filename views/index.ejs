@@ -29,17 +29,31 @@
     <div class="card-columns mt-2" id="notesList">
 
         <!--Картка Нотатка-->
-        <!--Картка Нотатка-->
         <% notes.forEach((elem) => { %>
             <div class="card" data-type="<%= elem.type %>" id="<%= elem.id%>">
                 <div class="card-body" data-id="<%= elem.id %>">
                     <h5 class="card-title" data-id="<%= elem.id %>"> <%= elem.title %> </h5>
                     <% if (elem.body) { %>
                         <div class="body" data-id="<%= elem.id %>">
-                            <% elem.body.forEach(input => { %>
-                                <li class="list-item"><%= input.todo %> <%= input.check %></li>
+                            <ul class="list-group list-group-flush">
+                            <% elem.body.forEach(item => { %>
+                                    <% if(item.check) { %>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">&#10003;</div>
+                                                    <li class="list-group-item crossed-text"> <%= item.todo %></li>
+                                                </div>
+                                            </div>
+                                    <% } else{%>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">&#9723;</div>
+                                                    <li class="list-group-item"> <%= item.todo %></li>
+                                                </div>
+                                            </div>
+                                    <% } %>
                             <% }) %>
-
+                            </ul>
                         </div>
                     <% } else { %>
                         <p class="card-text" data-id="<%= elem.id %>" > <%= elem.text %></p>

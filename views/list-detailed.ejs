@@ -20,50 +20,39 @@
         <div class="card-body">
             <div class="row">
                 <div class="col text-right">
-                    <button class="btn btn-danger mb-2">Видалити</button>
+                    <button class="btn btn-danger mb-2" id="deleteList">Видалити</button>
                 </div>
             </div>
-                    <h3 class="card-title text-center"> <%= list.title %></h3>
+                    <h3 class="card-title text-center"> </h3>
                     <ul class="list-group list-group-flush">
-                        <li class="list-group-item"> <%= list.body[0] %></li>
+                        <% list.body.forEach(item => { %>
+                            <% if(item.check) { %>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">&#10003;</div>
+                                        <li class=" list-group-item crossed-text"> <%= item.todo %></li>
+                                    </div>
+                                </div>
+                            <% } else{%>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <div class="input-group-text">&#9723;</div>
+                                        <li class=" list-group-item"> <%= item.todo %></li>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% }) %>
                     </ul>
-
-
-            <!--Зразок того, як будуть виглядати пункти списка:-->
-            <br>
-            <br>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col">
-                    <br><span><strong>Зразок того, як будуть виглядати пункти списка:</strong></span><br>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">Прочитати завдання</li>
-                        <li class="list-group-item">Сдати степ</li>
-                        <li class="list-group-item">Випити кави1</li>
-                        <li class="list-group-item">Випити кави3</li>
-                        <li class="list-group-item crossed-text">Випити кави45</li>
-                        <li class="list-group-item crossed-text">Прочитати завдання1</li>
-                        <li class="list-group-item crossed-text">Лягти спати</li>
-                        <li class="list-group-item crossed-text">Прочитати завдання12</li>
-                    </ul>
-                </div>
-            </div>
-            <br>
-            <br>
-            <br>
-            <br>
-            <!--END-->
-
-            <div class="row">
-                <div class="col">
-                    <button class="btn btn-warning" id="editList">Редагувати</button>
+                    <button class="btn btn-primary" id="toHomePage">На головну </button>
                 </div>
                 <div class="col text-right">
-                    <button class="btn btn-primary" id="toHomePage">На головну </button>
+                    <button class="btn btn-warning" id="editList">Редагувати</button>
                 </div>
         </div>
     </div>
-
-
+</div>
 </div>
 <script src="../../js/lists.js"></script>
 </body>

@@ -20,7 +20,8 @@ client.connect(err => {
 app.use(express.static(__dirname + "/static"));
 
 app.set("view engine", "ejs");
-// Отримання нотаток на головну сторінку
+
+// Отримання записів із бази на головну сторінку
 
 app.get("/", async (req, res)=>{
     let notes = []
@@ -75,6 +76,8 @@ app.post("/api/notes", async (req, res) => {
     res.json({created:true})
 });
 
+// Видалення нотатки
+
 app.delete("/api/notes/:id", async (req, res) => {
     try{
         await app.db.deleteOne({id:req.body.id})
@@ -95,16 +98,13 @@ app.route("/api/notes/:id", async (req, res) => {
 });
 
 
-
-/* === === To-do Discrit === ===*/
-
 // Перехід на сторінку створення списку
 
 app.get("/lists", async (req, res) => {
     res.render("listcreate")
 });
-//временная ссылка на карточку со списком -- http://localhost:3000/api/lists/1565276371189
-app.get("/api/lists/:id", async (req, res) => {
+//временная ссылка на карточку со списком -- http://localhost:3000/lists/1565276371189
+app.get("/lists/:id", async (req, res) => {
         let list;
         let targetID = Number(req.params.id);
     await app.db.find({id:targetID}).forEach((e) => {
@@ -114,8 +114,22 @@ app.get("/api/lists/:id", async (req, res) => {
 });
 
 
+// Перехід на сторінку списка справ
+
+app.get('/lists/:id', async(req, res) => {
+    let list;
+    // NB! Внимательно следи в каком виде приходит критерий для поиска по базе: строкой или числом
+    let targetID = Number(req.params.id);
+    await app.db.find({id:targetID}).forEach((elem) => {
+        list = elem
+    });
+    res.render('list-detailed', {list})
+    // res.send(req.params.id)
+});
+
 
 //Перехід на головну сторінку після збереження списка справ
+
 app.post("/api/lists", async (req, res) => {
     console.log(req.body);
 
@@ -129,10 +143,18 @@ app.post("/api/lists", async (req, res) => {
     res.json({created:true})
 });
 
-
+app.delete("/api/lists/:id", async (req, res) => {
+    try{
+        await app.db.deleteOne({id:req.body.id})
+    } catch (err) {
+        console.log(err);
+    }
+    res.json({deleted:true})
+});
 
 // Перевірка роботи сервера
 
 app.listen(port, ()=>{
     console.log("hello in console")
 });
+

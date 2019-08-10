@@ -167,3 +167,7 @@
     margin-bottom: 0;
 
 }
+
+li{
+    display: block;
+}
