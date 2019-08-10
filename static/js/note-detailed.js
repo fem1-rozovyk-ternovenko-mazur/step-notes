@@ -50,8 +50,9 @@ async function deleteNote() {
         },
          body: JSON.stringify(data)
     });
+    console.log(req);
     let answer = await req.json();
-    if (answer.deleted){
+     if (answer.deleted){
         window.location.href = '/'
     }
 }

@@ -143,9 +143,10 @@ app.post("/api/lists", async (req, res) => {
     res.json({created:true})
 });
 
+//видалення списку
 app.delete("/api/lists/:id", async (req, res) => {
     try{
-        await app.db.deleteOne({id:req.body.id})
+        await app.db.deleteOne({id:+req.params.id});
     } catch (err) {
         console.log(err);
     }

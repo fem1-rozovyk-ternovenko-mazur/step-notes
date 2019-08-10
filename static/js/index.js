@@ -33,26 +33,20 @@ addListBtn.addEventListener("click", () => {
 
 
 const cardItem = document.getElementById('notesList');
-let cardToRedirect = '.card-body, .card-title, .card-text';
-let listToRedirect = '.card-body, .card-title, .card-text, .list-item, .list-group, .list-group-item';
 
 cardItem.addEventListener('click', function (e) {
     let target = e.target.closest('.card');
-    console.log(target);
+    // console.log(target);
     if (target.dataset.type === "note") {
 
         let id = e.target.dataset.id;
-        if (e.target.matches(cardToRedirect)) {
             window.location.href = `/notes/${id}`
-        }
     }
 
     if (target.dataset.type === "list") {
+
         let id = e.target.dataset.id;
-        if (e.target.matches(listToRedirect)) {
+        console.log(id);
             window.location.href = `/lists/${id}`
-        }
     }
 });
-
-
