@@ -10,7 +10,7 @@ toHomePage.addEventListener('click', function () {
 });
 
 editList.addEventListener('click', function () {
-    alert('Редактировать список');
+    editThisList();
 });
 
 deleteList.addEventListener('click', function () {
@@ -33,3 +33,10 @@ deleteList.addEventListener('click', function () {
         }
     })();
 });
+
+
+/* === EDIT LIST ===*/
+
+function editThisList() {
+    alert('Редактировать список');
+}

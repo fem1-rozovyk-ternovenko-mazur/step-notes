@@ -142,7 +142,20 @@ function cancelNote() {
     })
 }
 
+
 // отмеченные пункты списка показывай внизу списка
 function sortByStatus(e){
-    e.sort((a, b) => a.check > b.check ? 1 : -1);
+    e.sort(compare);
 }
+
+function compare( a, b ) {
+    if ( a.check < b.check ){
+        return -1;
+    }
+    if ( a.check > b.check ){
+        return 1;
+    }
+    return 0;
+}
+
+
