@@ -44,13 +44,11 @@ deleteList.addEventListener('click', function () {
 function editThisList() {
     // alert('Редактировать список');
 
-    const template = `             <div class="row">
-                    <div class="col">
-                        <button class="btn btn-danger" id="cancelNewList">Відміна</button>
-                    </div>
-                    <div class="col text-right">
-                        <button class="btn btn-success"  id="saveNewList">Зберегти</button>
-                    </div>
+    const template = `             
+             <div class="row">
+                <div class="col text-right">
+                    <button class="btn btn-danger mb-2" id="deleteList">Видалити</button>
+                </div> 
                 </div>
                 <div class="row">
                     <div class="input-group mb-3 mt-3">
@@ -67,6 +65,14 @@ function editThisList() {
                     <div class="col">
                         <ul class="list-group list-group-flush" id="listArea"></ul>
                     </div>
-                </div>`;
+                </div>
+             <div class="row mt-3">
+                <div class="col">
+                    <button class="btn btn-primary" id="toHomePage">На головну </button>
+                </div>
+                <div class="col text-right">
+                    <button class="btn btn-warning" id="editList">Редагувати</button>
+                </div>
+        </div>`;
     cardBody.innerHTML = template;
 }
