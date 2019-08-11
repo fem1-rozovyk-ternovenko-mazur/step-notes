@@ -108,9 +108,8 @@ function clearInputItem() {
 function cancelNote() {
     const exitCard = document.createElement("div");
     exitCard.className = "confirm-exit-wrapper-list";
-    let container = document.querySelector('.container');
-    let height = container.offsetHeight;
-    height += 10;
+    let body = document.querySelector('body');
+    let height = body.offsetHeight;
     exitCard.style.height = `${height}px`;
     exitCard.innerHTML = `<div class="alert alert-info text-center text-dark">
                                 <span> Точно НЕ ЗБЕРІГАТИ список справ? </span>
