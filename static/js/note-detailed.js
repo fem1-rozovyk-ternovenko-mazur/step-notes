@@ -62,7 +62,7 @@ function editNote() {
     getEditBtns();
 
     cancelChangesBtn.addEventListener("click", function () {
-        confirmEditingCancelation()
+        confirmEditingCancellation()
 
     });
 
@@ -125,14 +125,14 @@ function getEditBtns() {
     rightBottomBtn.appendChild(saveChangedNoteBtn);
 }
 
-function confirmEditingCancelation(){
+function confirmEditingCancellation(){
 
     const confirmDeletionCard = document.createElement("div");
 
     confirmDeletionCard.innerHTML = `
                         <div class="confirm-wrapper">
                             <div class="alert alert-info text-center text-dark">
-                                <span> Точно ВИДАЛИТИ нотатку? </span>
+                                <span> Точно НЕ ЗБЕРІГАТИ зміни? </span>
                                 <div class="row mt-3">
                                     <div class="col">
                                         <button class="btn btn-danger" id="confirmEditingCancelationBtn"> Так, забудь </button>
