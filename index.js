@@ -87,10 +87,15 @@ app.delete("/api/notes/:id", async (req, res) => {
     res.json({deleted:true})
 });
 
-app.route("/api/notes/:id", async (req, res) => {
+app.put("/api/notes/:id", async (req, res) => {
     let targetID = Number(req.body.id);
     try {
-        await app.db.updateOne({id: targetID});
+        await app.db.updateOne({id: targetID}, {
+            $set: {
+                title: req.body.title,
+                text: req.body.text,
+            }
+        });
     } catch (err) {
         console.log(err);
     }
