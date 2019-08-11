@@ -3,9 +3,9 @@ const editList = document.querySelector('#editList');
 const deleteList = document.querySelector('#deleteList');
 const cardBody = document.querySelector('.card-body');
 const cardTite = document.querySelector('.card-title').innerText;
-const cardListItem = document.querySelectorAll('.list-group-item');
+const cardListItem = document.querySelectorAll('.list-group-item')[0].innerText;
 
-console.log(cardListItem);
+console.log(cardListItem[0].innerText);
 let target = document.querySelector(".card");
 let targetID = Number(target.id);
 
@@ -63,15 +63,22 @@ function editThisList() {
                 </div>
                 <div class="row">
                     <div class="col">
-                        <ul class="list-group list-group-flush" id="listArea"></ul>
+                        <ul class="list-group list-group-flush" id="listArea">
+                        <li class="list-group-item item-wrap">
+                        <label class="label-wrap">
+                        <input type="checkbox" name="check" class="mr-3">${cardListItem}</label>
+                        <span class="remove">X</span>
+                        </li>
+                        
+</ul>
                     </div>
                 </div>
              <div class="row mt-3">
                 <div class="col">
-                    <button class="btn btn-primary" id="toHomePage">На головну </button>
+                    <button class="btn btn-primary" id="toHomePage">Скасувати </button>
                 </div>
                 <div class="col text-right">
-                    <button class="btn btn-warning" id="editList">Редагувати</button>
+                    <button class="btn btn-success" id="saveChangedList">Зберегти</button>
                 </div>
         </div>`;
     cardBody.innerHTML = template;
