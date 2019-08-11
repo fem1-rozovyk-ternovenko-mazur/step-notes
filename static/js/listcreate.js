@@ -118,7 +118,7 @@ function cancelNote() {
                                         <button class="btn btn-danger" id="confirmExitBtn"> Так, хочу просто піти </button>
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-warning" id="cancelExitBtn"> Ні, доробити нотатку </button>
+                                        <button class="btn btn-warning" id="cancelExitBtn"> Ні, доробити список</button>
                                     </div>        
                                 </div>
                         </div>`;
@@ -141,7 +141,19 @@ function cancelNote() {
     })
 }
 
+
 // отмеченные пункты списка показывай внизу списка
 function sortByStatus(e){
-    e.sort((a, b) => a.check > b.check ? 1 : -1);
+    e.sort(compare);
 }
+
+function compare( a, b ) {
+    if ( a.check < b.check ){
+        return -1;
+    }
+    if ( a.check > b.check ){
+        return 1;
+    }
+    return 0;
+}
+
