@@ -119,7 +119,7 @@ function cancelNote() {
                                         <button class="btn btn-danger" id="confirmExitBtn"> Так, хочу просто піти </button>
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-warning" id="cancelExitBtn"> Ні, доробити нотатку </button>
+                                        <button class="btn btn-warning" id="cancelExitBtn"> Ні, доробити список</button>
                                     </div>        
                                 </div>
                         </div>`;
@@ -157,5 +157,4 @@ function compare( a, b ) {
     }
     return 0;
 }
-
 

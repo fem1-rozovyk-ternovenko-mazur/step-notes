@@ -142,6 +142,8 @@ app.delete("/api/lists/:id", async (req, res) => {
     res.json({deleted:true})
 });
 
+
+
 // Перевірка роботи сервера
 
 app.listen(port, ()=>{
