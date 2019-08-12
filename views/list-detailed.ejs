@@ -5,46 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%- include('components/head') %>
-
     <title>Your List</title>
 </head>
 <body>
-<h2 class="welcome-title">
-    Тут може бути ваш Todo список
-</h2>
-
-<%- include('components/cat')%>
-
-<div class="container">
-    <div class="card" id="<%= list.id %>">
-        <div class="card-body">
-            <div class="row">
-                <div class="col text-right">
-                    <button class="btn btn-danger mb-2" id="deleteList">Видалити</button>
+    <h2 class="welcome-title">Тут може бути ваш Todo список</h2>
+    <%- include('components/cat')%>
+    <div class="container">
+        <div class="card" id="<%= list.id %>">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col text-right">
+                        <button class="btn btn-danger mb-2" id="deleteList">Видалити</button>
+                    </div>
+                </div>
+                        <h3 class="card-title text-center font-weight-bold"><%= list.title %> </h3>
+                        <ul class="list-group list-group-flush">
+                            <% list.body.forEach(item => { %>
+                                <% if(item.check) { %>
+                                    <li class=" list-group-item"> <span  class="mr-3">&#10003;</span><span class="list-text crossed-text"><%= item.todo %></span></li>
+                                <% } else{%>
+                                    <li class="list-group-item"> <span class="mr-3">&#9723;</span><span class="list-text"><%= item.todo %></span></li>
+                                <% } %>
+                            <% }) %>
+                        </ul>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button class="btn btn-primary" id="toHomePage">На головну</button>
+                    </div>
+                    <div class="col text-right">
+                        <button class="btn btn-warning" id="editList">Редагувати</button>
+                    </div>
                 </div>
             </div>
-                    <h3 class="card-title text-center font-weight-bold"><%= list.title %> </h3>
-                    <ul class="list-group list-group-flush">
-                        <% list.body.forEach(item => { %>
-                            <% if(item.check) { %>
-                                <li class=" list-group-item"> <span  class="mr-3">&#10003;</span><span class="list-text crossed-text"><%= item.todo %></span></li>
-
-                            <% } else{%>
-                                <li class="list-group-item"> <span class="mr-3">&#9723;</span><span class="list-text"><%= item.todo %></span></li>
-
-                            <% } %>                        <% }) %>
-                    </ul>
-            <div class="row mt-3">
-                <div class="col">
-                    <button class="btn btn-primary" id="toHomePage">На головну </button>
-                </div>
-                <div class="col text-right">
-                    <button class="btn btn-warning" id="editList">Редагувати</button>
-                </div>
-            </div>
+        </div>
     </div>
-</div>
-</div>
 <script src="../../js/lists.js"></script>
 <script src="../../js/list-components.js"></script>
 </body>
