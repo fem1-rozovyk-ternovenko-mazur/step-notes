@@ -107,7 +107,7 @@ function buildDataObject() {
 }
 
 
-// modal window if you exit without saving
+// modal window if you want to exit without saving
 function ifCancel() {
     const exitCard = document.createElement("div");
     exitCard.className = "confirm-exit-wrapper-list";

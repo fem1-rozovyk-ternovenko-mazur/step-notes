@@ -29,6 +29,7 @@ listArea.addEventListener('click',  function (event) {
 //save new list
 async function saveList() {
     let data = buildDataObject();
+//    if (data.body === [] || data.title === "") { alert("Список повинен мати заповнених заголовок та мінімум 1 пункт!")};
     let req = await fetch('http://localhost:3000/api/lists', {
             method: "POST",
             headers: {

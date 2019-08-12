@@ -71,6 +71,7 @@ function editThisList() {
     //save edited list
     async function saveEditNote() {
        let data = buildDataObject();
+       // if (data.body === [] || data.title === "") { alert("Список повинен мати заповнених заголовок та мінімум 1 пункт!")};
         let req = await fetch(`http://localhost:3000/api/lists/${targetID}`, {
             method: "PUT",
             headers: {
