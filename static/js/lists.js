@@ -3,7 +3,7 @@ const editList = document.querySelector('#editList');
 const deleteList = document.querySelector('#deleteList');
 const cardBody = document.querySelector('.card-body');
 const cardTitle = document.querySelector('.card-title').innerText;
-const cardListItem = document.querySelectorAll('.list-group-item');
+const cardListItem = document.querySelectorAll('.list-text');
 const card = document.querySelector(".card");
 const targetID = Number(card.id);
 
@@ -86,10 +86,7 @@ function editThisList() {
 }
 
 
-
-
-
-//делает страшные дела.
+//compiles a list editing template
 function getListTemplate() {
 
     const deleteBtn = `<div class="row"><div class="col text-right"><button class="btn btn-danger mb-2" id="deleteListFromEdit">Видалити</button></div></div>`;
@@ -107,11 +104,12 @@ function getListTemplate() {
     cardBody.innerHTML = deleteBtn + editTitle + addNewItem + listItems + cancelBtn + saveEditListBtn;
 }
 
-//формируеут список элементов
+//makes a list of elements
 function getlistItems() {
     let sting = ``;
     cardListItem.forEach((e)=>{
-        if (e.classList.contains("crossed-text")){
+        console.log(e.className);
+        if (e.classList[1] === "crossed-text"){
             let listValue =`<li class="list-group-item item-wrap"><label class="label-wrap crossed-text"><input type="checkbox" name="check" class="mr-3" checked>${e.innerText}</label><span class="remove">X</span></li>`;
             sting += listValue;
             }else {

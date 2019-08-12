@@ -23,25 +23,16 @@
                     <button class="btn btn-danger mb-2" id="deleteList">Видалити</button>
                 </div>
             </div>
-                    <h3 class="card-title text-center"><%= list.title %> </h3>
+                    <h3 class="card-title text-center font-weight-bold"><%= list.title %> </h3>
                     <ul class="list-group list-group-flush">
                         <% list.body.forEach(item => { %>
                             <% if(item.check) { %>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">&#10003;</div>
-                                        <li class=" list-group-item crossed-text"> <%= item.todo %></li>
-                                    </div>
-                                </div>
+                                <li class=" list-group-item"> <span  class="mr-3">&#10003;</span><span class="list-text crossed-text"><%= item.todo %></span></li>
+
                             <% } else{%>
-                                <div class="input-group">
-                                    <div class="input-group-prepend">
-                                        <div class="input-group-text">&#9723;</div>
-                                        <li class=" list-group-item"> <%= item.todo %></li>
-                                    </div>
-                                </div>
-                            <% } %>
-                        <% }) %>
+                                <li class="list-group-item"> <span class="mr-3">&#9723;</span><span class="list-text"><%= item.todo %></span></li>
+
+                            <% } %>                        <% }) %>
                     </ul>
             <div class="row mt-3">
                 <div class="col">
