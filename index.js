@@ -158,6 +158,20 @@ app.delete("/api/lists/:id", async (req, res) => {
     res.json({deleted:true})
 });
 
+app.put("/api/lists/:id", async (req, res) => {
+    let targetID = Number(req.body.id);
+    try {
+        await app.db.updateOne({id: +targetID}, {
+            $set: {
+                title: req.body.title,
+                body: req.body.body,
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
+    res.json ({edited:true})
+});
 
 
 // Перевірка роботи сервера
