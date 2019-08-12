@@ -87,6 +87,21 @@ app.delete("/api/notes/:id", async (req, res) => {
     res.json({deleted:true})
 });
 
+app.put("/api/notes/:id", async (req, res) => {
+    let targetID = Number(req.body.id);
+    try {
+        await app.db.updateOne({id: targetID}, {
+            $set: {
+                title: req.body.title,
+                text: req.body.text,
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
+    res.json ({edited:true})
+});
+
 
 // Перехід на сторінку створення списку
 
@@ -133,9 +148,10 @@ app.post("/api/lists", async (req, res) => {
     res.json({created:true})
 });
 
+//видалення списку
 app.delete("/api/lists/:id", async (req, res) => {
     try{
-        await app.db.deleteOne({id:req.body.id})
+        await app.db.deleteOne({id:+req.params.id});
     } catch (err) {
         console.log(err);
     }

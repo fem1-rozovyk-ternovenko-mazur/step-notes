@@ -32,7 +32,6 @@ async function deleteThisList() {
         },
         body: JSON.stringify(data)
     });
-
     let answer = await req.json();
     if (answer.deleted){
         window.location.href = '/'
