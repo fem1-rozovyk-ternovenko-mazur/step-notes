@@ -36,17 +36,11 @@ const cardItem = document.getElementById('notesList');
 
 cardItem.addEventListener('click', function (e) {
     let target = e.target.closest('.card');
-    // console.log(target);
+    let id = target.id;
     if (target.dataset.type === "note") {
-
-        let id = e.target.dataset.id;
             window.location.href = `/notes/${id}`
     }
-
     if (target.dataset.type === "list") {
-
-        let id = e.target.dataset.id;
-        console.log(id);
             window.location.href = `/lists/${id}`
     }
 });
