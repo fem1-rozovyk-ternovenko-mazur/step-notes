@@ -1,5 +1,5 @@
 const express = require('express');
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -21,7 +21,8 @@ app.use(express.static(__dirname + "/static"));
 
 app.set("view engine", "ejs");
 
-// Отримання записів із бази на головну сторінку
+
+// Getting documents from db to the main page
 
 app.get("/", async (req, res)=>{
     let notes = []
@@ -31,29 +32,19 @@ app.get("/", async (req, res)=>{
     res.render("index", {notes})
 });
 
-// Отримання списків на головну сторінку
 
-// app.get("/", async (req, res)=>{
-//     let lists = [];
-//     await app.db.find({type: "list"}).forEach((el) => {
-//         lists.push(el)
-//     });
-//     console.log(lists);
-//     res.render("index", {lists})
-// });
-
-// Перехід на сторінку створення нотатки
+// Creating note
 
 app.get("/notes", async (req, res) => {
 
     res.render("create-note");
 });
 
-// Перехід на сторінку нотатки
+
+// Redirecting to the note page
 
 app.get('/notes/:id', async(req, res) => {
     let nts;
-    // NB! Внимательно следи в каком виде приходит критерий для поиска по базе: строкой или числом
     let targetID = Number(req.params.id);
     await app.db.find({id:targetID}).forEach((elem) => {
         nts = elem
@@ -61,7 +52,8 @@ app.get('/notes/:id', async(req, res) => {
     res.render('note-detailed', {nts})
 });
 
-// Перехід на головну сторінку після збереження нотатки
+
+// Redirecting to the main pare after note's saving
 
 app.post("/api/notes", async (req, res) => {
     console.log(req.body);
@@ -76,7 +68,8 @@ app.post("/api/notes", async (req, res) => {
     res.json({created:true})
 });
 
-// Видалення нотатки
+
+// Deleting note
 
 app.delete("/api/notes/:id", async (req, res) => {
     try{
@@ -86,6 +79,9 @@ app.delete("/api/notes/:id", async (req, res) => {
     }
     res.json({deleted:true})
 });
+
+
+// Editing note
 
 app.put("/api/notes/:id", async (req, res) => {
     let targetID = Number(req.body.id);
@@ -103,37 +99,26 @@ app.put("/api/notes/:id", async (req, res) => {
 });
 
 
-// Перехід на сторінку створення списку
+// Creating list
 
 app.get("/lists", async (req, res) => {
     res.render("listcreate")
 });
-//временная ссылка на карточку со списком -- http://localhost:3000/lists/1565276371189
+
+
+// Redirecting to the list's page
+
 app.get("/lists/:id", async (req, res) => {
         let list;
         let targetID = Number(req.params.id);
-    await app.db.find({id:targetID}).forEach((e) => {
-            list = e;
+    await app.db.find({id:targetID}).forEach((elem) => {
+            list = elem;
         });
         res.render('list-detailed', {list} )
 });
 
 
-// Перехід на сторінку списка справ
-
-app.get('/lists/:id', async(req, res) => {
-    let list;
-    // NB! Внимательно следи в каком виде приходит критерий для поиска по базе: строкой или числом
-    let targetID = Number(req.params.id);
-    await app.db.find({id:targetID}).forEach((elem) => {
-        list = elem
-    });
-    res.render('list-detailed', {list})
-    // res.send(req.params.id)
-});
-
-
-//Перехід на головну сторінку після збереження списка справ
+// Redirecting to the main page after list's saving
 
 app.post("/api/lists", async (req, res) => {
     console.log(req.body);
@@ -148,7 +133,9 @@ app.post("/api/lists", async (req, res) => {
     res.json({created:true})
 });
 
-//видалення списку
+
+// Deleting list
+
 app.delete("/api/lists/:id", async (req, res) => {
     try{
         await app.db.deleteOne({id:+req.params.id});
@@ -157,6 +144,8 @@ app.delete("/api/lists/:id", async (req, res) => {
     }
     res.json({deleted:true})
 });
+
+// Editing list
 
 app.put("/api/lists/:id", async (req, res) => {
     let targetID = Number(req.body.id);
@@ -173,8 +162,7 @@ app.put("/api/lists/:id", async (req, res) => {
     res.json ({edited:true})
 });
 
-
-// Перевірка роботи сервера
+// Server checking
 
 app.listen(port, ()=>{
     console.log("hello in console")
