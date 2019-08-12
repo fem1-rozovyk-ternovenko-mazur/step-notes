@@ -26,6 +26,7 @@ cardItem.addEventListener('click', function (e) {
             window.location.href = `/notes/${id}`
     }
     if (target.dataset.type === "list") {
-         window.location.href = `/lists/${id}`
+
+            window.location.href = `/lists/${id}`
     }
 });

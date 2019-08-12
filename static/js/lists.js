@@ -4,12 +4,11 @@ const deleteList = document.querySelector('#deleteList');
 const cardBody = document.querySelector('.card-body');
 const cardTitle = document.querySelector('.card-title').innerText;
 const cardListItem = document.querySelectorAll('.list-group-item');
-console.log(cardListItem);
+const card = document.querySelector(".card");
+const targetID = Number(card.id);
 
-let target = document.querySelector(".card");
-let targetID = target.id;
 toHomePage.addEventListener('click', function () {
-    window.location.href = "/";
+    goToHomePage();
 });
 
 editList.addEventListener('click', function () {
@@ -17,39 +16,11 @@ editList.addEventListener('click', function () {
 });
 
 deleteList.addEventListener('click', function () {
-    confirmNoteDeletion();
+    ifDelete();
 });
 
 
-function confirmNoteDeletion(){
-
-    const confirmDeletionCard = document.createElement("div");
-    confirmDeletionCard.className = "confirm-exit-wrapper-list";
-    let body = document.querySelector('body');
-    let height = body.offsetHeight;
-    console.log(height);
-    confirmDeletionCard.style.height = `${height}px`;
-    confirmDeletionCard.innerHTML = `<div class="alert alert-info text-center text-dark">
-                                <span> Точно ВИДАЛИТИ нотатку? </span>
-                                <div class="row mt-3">
-                                    <div class="col">
-                                        <button class="btn btn-danger" id="confirmDeletionBtn"> Так, видали </button>
-                                    </div>
-                                    <div class="col">
-                                        <button class="btn btn-warning" id="cancelDeletionBtn"> Ні, хай живе </button>
-                                    </div>        
-                                </div>
-                            </div>`;
-
-    document.body.appendChild(confirmDeletionCard);
-
-    const confirmDeletionBtn = document.querySelector("#confirmDeletionBtn");
-    const cancelDeletionBtn = document.querySelector("#cancelDeletionBtn");
-
-    confirmDeletionBtn.addEventListener("click", deleteThisList);
-    cancelDeletionBtn.addEventListener("click", function (){document.body.removeChild(confirmDeletionCard)})
-}
-
+//delete This List
 async function deleteThisList() {
     let data = {
         id: targetID
@@ -62,7 +33,6 @@ async function deleteThisList() {
         body: JSON.stringify(data)
     });
     let answer = await req.json();
-    console.log(answer);
     if (answer.deleted){
         window.location.href = '/'
     }
@@ -72,55 +42,9 @@ async function deleteThisList() {
 /* === EDIT LIST ===*/
 
 function editThisList() {
-
     getListTemplate();
-
-    //clearInputItem()
-    addNewItem.addEventListener('click', function () {
-        let valueListItem = document.querySelector('#writeListItem').value;
-        let li = document.createElement('li');
-        let checkbox = document.createElement("input");
-        let listText = document.createTextNode(valueListItem);
-        let label = document.createElement('label');
-        let spanRemove = document.createElement('span');
-        li.className = "list-group-item item-wrap";
-        label.className = 'label-wrap';
-        checkbox.type = 'checkbox';
-        checkbox.name = 'check';
-        checkbox.className = 'mr-3';
-        spanRemove.className = "remove";
-        spanRemove.innerText = "X";
-        label.appendChild(checkbox);
-        label.appendChild(listText);
-        li.appendChild(label);
-        li.appendChild(spanRemove);
-        if (valueListItem === ""){
-            alert("Порожній рядок не можна вносити!")
-        }else{
-            listArea.appendChild(li);
-        }
-        clearInputItem();
-    });
-
-    listArea.addEventListener('click', function (e) {
-        let target = e.target;
-        if (target.className === "remove"){
-            target.parentElement.remove();
-        }else {
-            const checkbox = document.querySelectorAll('input[type = checkbox]');
-            for (let i = 0; i < checkbox.length; i++) {
-                checkbox[i].onchange = function () {
-                    if (this.checked != true) {
-                        this.labels[0].className ="label-wrap";
-                    } else {
-                        this.labels[0].className ="label-wrap crossed-text ";
-                    }
-                }
-
-            }
-        }
-    });
-
+    addNewItem.addEventListener('click', addListItem);
+    listArea.addEventListener('click', editListItem);
 
     const deleteList = document.querySelector("#deleteListFromEdit");
     const toHomePage = document.querySelector('#toHomePageFromEdit');
@@ -129,12 +53,13 @@ function editThisList() {
 
     //На главную, снова
     toHomePage.addEventListener('click', function () {
-        window.location.href = "/";
+        ifCancel();
     });
 
     //Удалить список, снова
     deleteList.addEventListener('click', function () {
-        deleteThisList();
+        ifDelete()
+        // deleteThisList();
     });
 
     //сохранить измененный список, новое
@@ -143,29 +68,9 @@ function editThisList() {
     });
 
 
-    //формирование объекта отредактированной карточки
+    //save edited list
     async function saveEditNote() {
-        let id = targetID;
-        let listTitle = document.querySelector(".list-title").value;
-        let listItem = [];
-        let listArea = document.querySelectorAll('.label-wrap');
-
-        for(let i=0; i<listArea.length; i++){
-            let temp ={};
-            let textItem = listArea[i].textContent;
-            let check = listArea[i].firstChild.checked;
-            temp.todo =  textItem;
-            temp.check =  check;
-            listItem.push(temp);
-        }
-        sortByStatus(listItem);
-        let data = {
-            id: id,
-            type: "list",
-            title: listTitle,
-            body: listItem,
-        };
-        console.log(data);
+       let data = buildDataObject();
         let req = await fetch(`http://localhost:3000/api/lists/${targetID}`, {
             method: "PUT",
             headers: {
@@ -175,10 +80,13 @@ function editThisList() {
         });
         let answer = await req.json();
         if (answer.edited){
-            window.location.href = '/'
+            goToHomePage();
         }
     }
 }
+
+
+
 
 
 //делает страшные дела.
@@ -208,28 +116,9 @@ function getlistItems() {
             sting += listValue;
             }else {
             let listValue =`<li class="list-group-item item-wrap"><label class="label-wrap"><input type="checkbox" name="check" class="mr-3">${e.innerText}</label><span class="remove">X</span></li>`;
-        sting += listValue;}
+        sting += listValue;
+        }
     });
     return sting;
 };
 
-
-function clearInputItem() {
-    console.log("Почистил. Не беспокойся бро");
-    document.querySelector('#writeListItem').value = null;
-}
-
-// отмеченные пункты списка показывай внизу списка
-function sortByStatus(e){
-    e.sort(compare);
-}
-
-function compare( a, b ) {
-    if ( a.check < b.check ){
-        return -1;
-    }
-    if ( a.check > b.check ){
-        return 1;
-    }
-    return 0;
-}
