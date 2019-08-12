@@ -1,0 +1,173 @@
+.card-columns {
+    display: inline-block;
+    -webkit-column-break-inside: avoid;
+}
+
+.welcome-title {
+    margin: 10px;
+    text-align: center;
+    margin: 10px;
+}
+
+.box{
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    width: 300px;
+    height: 210px;
+    background: none;
+}
+
+.head{
+    position: absolute;
+    top:16.5%;
+    left: 25%;
+    width: 52%;
+    height: 70%;
+    background: #A6BECF;
+    border-radius: 50%;
+}
+.head-copy{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #000000;
+    border-radius: 50%;
+    z-index: 2;
+}
+.ear-left{
+    position: absolute;
+    width: 20%;
+    height: 50%;
+    left: 6%;
+    top: 0%;
+    background: #000000;
+    border-radius: 50%;
+    transform: rotate(160deg);
+    z-index: 1;
+}
+.ear-right{
+    position: absolute;
+    width: 20%;
+    height: 50%;
+    right: 6%;
+    top: 0%;
+    background: #000000;
+    border-radius: 50%;
+    transform: rotate(20deg);
+    z-index: 1;
+}
+.inner-ear{
+    position: absolute;
+    border-radius: 50%;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+    background: #E090A1;
+}
+.eye-left{
+    position: absolute;
+    background: #FFCE1C;
+    width: 20%;
+    height: 20%;
+    top: 37%;
+    left: 21%;
+    border-radius: 50%;
+    z-index: 3;
+}
+.eye-right{
+    position: absolute;
+    background: #00BE4D;
+    width: 20%;
+    height: 20%;
+    top: 37%;
+    right: 21%;
+    border-radius: 50%;
+    z-index: 3;
+}
+.pupil{
+    position: absolute;
+    width: 40%;
+    height: 70%;
+    top: 15%;
+    left: 30%;
+    border-radius: 50%;
+    background: #000000;
+}
+.nose{
+    position: absolute;
+    background: #E090A1;
+    width: 15%;
+    height: 9.5%;
+    left: 43%;
+    top: 65%;
+    border-radius: 50px;
+    z-index: 4;
+}
+
+.far {
+    padding: 5px;
+}
+
+/*-------------  Notes   --------------*/
+
+.create-note-wrapper{
+    display: flex;
+    justify-content: center;}
+
+.confirm-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(209, 236, 241, .5);
+}
+
+/*-------------  ToDo-List   --------------*/
+
+.confirm-exit-wrapper-list{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    z-index: 1000;
+    width: 100vw;
+    background: rgba(209, 236, 241, .5);
+}
+.item-wrap{
+    display: flex;
+    justify-content: space-between;
+}
+
+.label-wrap{
+    margin-bottom: 0;
+}
+
+.remove{
+    cursor: pointer;
+}
+
+.remove:hover{
+    color: red;
+}
+
+.crossed-text{
+    text-decoration: line-through;
+    color: green;
+    margin-bottom: 0;
+
+}
+
+li{
+    display: block;
+}

@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+<!--    <link rel="stylesheet" href="static/css/style.css">-->
+    <%- include('components/head') %>
+
+    <title>Notes</title>
+</head>
+<body>
+
+<div class="container">
+
+        <h2 class="welcome-title">Створюйте свої нотатки та списки справ тут!</h2>
+
+    <%- include('components/cat')%>
+
+    <button type="button" id="addNoteButton" class="btn btn-warning mb-2"><i class="far fa-comment-alt"></i>Додати нотатку</button>
+    <button type="button" id="addListButton" class="btn btn-success mb-2"><i class="far fa-check-square"></i>Додати список справ</button>
+
+    <!--Колонка-->
+
+    <!--Виведення списку нотаток-->
+
+    <div class="card-columns mt-2" id="notesList">
+
+        <!--Картка Нотатка-->
+        <% notes.forEach((elem) => { %>
+            <div class="card" data-type="<%= elem.type %>" id="<%= elem.id%>">
+                <div class="card-body">
+                    <h5 class="card-title"> <%= elem.title %> </h5>
+                    <% if (elem.body) { %>
+                            <ul class="list-group list-group-flush">
+                            <% elem.body.forEach(item => { %>
+                                    <% if(item.check) { %>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">&#10003;</div>
+                                                    <li class="list-group-item crossed-text"> <%= item.todo %></li>
+                                                </div>
+                                            </div>
+                                    <% } else{%>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend" >
+                                                    <div class="input-group-text">&#9723;</div>
+                                                    <li class="list-group-item"> <%= item.todo %></li>
+                                                </div>
+                                            </div>
+                                    <% } %>
+                            <% }) %>
+                            </ul>
+                    <% } else { %>
+                        <p class="card-text"> <%= elem.text %></p>
+                    <% } %>
+
+                </div>
+            </div>
+        <% })%>
+
+    </div>
+
+</div>
+
+<script src="js/index.js"></script>
+</body>
+</html>
