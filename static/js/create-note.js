@@ -2,7 +2,7 @@
 const cancelBtn = document.querySelector("#cancelBtn");
 const saveNoteBtn = document.querySelector("#saveNoteBtn");
 
-cancelBtn.addEventListener("click", cancelNote);
+cancelBtn.addEventListener("click", ifCancel());
 saveNoteBtn.addEventListener("click", saveNote);
 
 function cancelNote() {
@@ -28,7 +28,7 @@ function cancelNote() {
     const cancelExitBtn = document.querySelector("#cancelExitBtn");
 
     confirmExitBtn.addEventListener('click', function(){
-        window.location.href = `/`;
+        window.location.href = "/";
     });
 
     cancelExitBtn.addEventListener('click', function () {
