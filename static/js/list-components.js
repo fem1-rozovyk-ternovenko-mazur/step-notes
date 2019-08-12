@@ -113,7 +113,6 @@ function ifCancel() {
     exitCard.className = "confirm-exit-wrapper-list";
     let body = document.querySelector('html');
     let height = body.offsetHeight;
-    console.log(height);
     exitCard.style.height = `${height}px`;
     exitCard.innerHTML = `<div class="alert alert-info text-center text-dark">
                                 <span> Залишити цю сторінку без збереження? </span>
@@ -127,10 +126,8 @@ function ifCancel() {
                                 </div>
                         </div>`;
     document.body.appendChild(exitCard);
-
     const confirmExitBtn = document.querySelector("#confirmExitBtn");
     const cancelExitBtn = document.querySelector("#cancelExitBtn");
-
     confirmExitBtn.addEventListener('click', function () {
         //перейти на гавную стараницу
         (function clearAllInputs() {
@@ -139,7 +136,6 @@ function ifCancel() {
         })();
         goToHomePage();
     });
-
     cancelExitBtn.addEventListener('click', function () {
         document.body.removeChild(exitCard)
     })
@@ -147,12 +143,12 @@ function ifCancel() {
 
 // modal window if you try to delete list
 function ifDelete(){
-
     const confirmDeletionCard = document.createElement("div");
-
-    confirmDeletionCard.innerHTML = `
-                        <div class="confirm-wrapper">
-                            <div class="alert alert-info text-center text-dark">
+    confirmDeletionCard.className = "confirm-wrapper";
+    let body = document.querySelector('html');
+    let height = body.offsetHeight;
+    confirmDeletionCard.style.height = `${height}px`;
+    confirmDeletionCard.innerHTML = `<div class="alert alert-info text-center text-dark">
                                 <span> Ви точно бажаєте видалити цей список? </span>
                                 <div class="row mt-3">
                                     <div class="col">
@@ -162,12 +158,8 @@ function ifDelete(){
                                         <button class="btn btn-warning" id="cancelDeletionBtn"> Ні</button>
                                     </div>        
                                 </div>
-                            </div>
-                        </div>
-    `;
-
+                            </div>`;
     document.body.appendChild(confirmDeletionCard);
-
     const confirmDeletionBtn = document.querySelector("#confirmDeletionBtn");
     const cancelDeletionBtn = document.querySelector("#cancelDeletionBtn");
 
