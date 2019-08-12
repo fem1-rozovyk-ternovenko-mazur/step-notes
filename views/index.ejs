@@ -31,54 +31,35 @@
         <!--Картка Нотатка-->
         <% notes.forEach((elem) => { %>
             <div class="card" data-type="<%= elem.type %>" id="<%= elem.id%>">
-                <div class="card-body" data-id="<%= elem.id %>">
-                    <h5 class="card-title" data-id="<%= elem.id %>"> <%= elem.title %> </h5>
+                <div class="card-body">
+                    <h5 class="card-title"> <%= elem.title %> </h5>
                     <% if (elem.body) { %>
-                        <!--<div class="body" data-id="<%= elem.id %>">-->
-                            <ul class="list-group list-group-flush" data-id="<%= elem.id %>">
+                            <ul class="list-group list-group-flush">
                             <% elem.body.forEach(item => { %>
                                     <% if(item.check) { %>
-                                            <div class="input-group" data-id="<%= elem.id %>">
-                                                <div class="input-group-prepend" data-id="<%= elem.id %>">
-                                                    <div class="input-group-text" data-id="<%= elem.id %>">&#10003;</div>
-                                                    <li class="list-group-item crossed-text" data-id="<%= elem.id %>"> <%= item.todo %></li>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <div class="input-group-text">&#10003;</div>
+                                                    <li class="list-group-item crossed-text"> <%= item.todo %></li>
                                                 </div>
                                             </div>
                                     <% } else{%>
-                                            <div class="input-group" data-id="<%= elem.id %>">
-                                                <div class="input-group-prepend" data-id="<%= elem.id %>">
-                                                    <div class="input-group-text" data-id="<%= elem.id %>">&#9723;</div>
-                                                    <li class="list-group-item" data-id="<%= elem.id %>"> <%= item.todo %></li>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend" >
+                                                    <div class="input-group-text">&#9723;</div>
+                                                    <li class="list-group-item"> <%= item.todo %></li>
                                                 </div>
                                             </div>
                                     <% } %>
                             <% }) %>
                             </ul>
-                        <!--</div>-->
                     <% } else { %>
-                        <p class="card-text" data-id="<%= elem.id %>" > <%= elem.text %></p>
+                        <p class="card-text"> <%= elem.text %></p>
                     <% } %>
 
                 </div>
             </div>
         <% })%>
-
-        <!--Картка Список-->
-<!--        <div class="card" data-type="list" id="checkList">-->
-<!--            <div class="card-body">-->
-<!--                <h5 class="card-title"></h5>-->
-<!--                <div class="input-group mb-3">-->
-<!--                    <div class="input-group-prepend">-->
-<!--                        <div class="input-group-text">-->
-<!--                            <input type="checkbox" aria-label="Checkbox for following text input">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <input type="text" class="form-control" aria-label="Text input with checkbox">-->
-<!--&lt;!&ndash;                    <button type="button" class="btn btn-danger mt-4">Видалити список справ</button>&ndash;&gt;-->
-
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
     </div>
 
 </div>
