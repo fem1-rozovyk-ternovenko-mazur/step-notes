@@ -71,7 +71,7 @@ function editThisList() {
     //save edited list
     async function saveEditNote() {
        let data = buildDataObject();
-        let req = await fetch(`https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/lists/${targetID}`, {
+        let req = await fetch(`https://fem1ns.herokuapp.com/api/lists/${targetID}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
