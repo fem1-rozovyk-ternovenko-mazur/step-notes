@@ -12,7 +12,7 @@ async function deleteNote() {
         id:targetID,
     };
 
-    let req = await fetch (`https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/notes/${targetID}`, {
+    let req = await fetch (`fem1ns.herokuapp.com/api/notes/${targetID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -92,7 +92,7 @@ function getEditBtns() {
 //save edited note
 async function saveChangedNote() {
     let data = buildDataObject();
-    let req = await fetch (`https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/notes/${targetID}`, {
+    let req = await fetch (`https://fem1ns.herokuapp.com/api/notes/${targetID}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"

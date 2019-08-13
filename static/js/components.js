@@ -156,7 +156,7 @@ function ifCancel() {
             }
         }
         if(typeOfCard === "note") {
-            if (window.location.href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/notes") {
+            if (window.location.href === "https://fem1ns.herokuapp.com/notes") {
                 goToHomePage();
             } else {
                 window.location.href = `/notes/${targetID}`;
