@@ -122,7 +122,6 @@ function buildDataObject() {
     }
 }
 
-
 // modal window if you want to exit without saving
 function ifCancel() {
     const exitCard = document.createElement("div");
@@ -146,7 +145,7 @@ function ifCancel() {
     const cancelExitBtn = document.querySelector("#cancelExitBtn");
     confirmExitBtn.addEventListener('click', function () {
         if (typeOfCard === "list") {
-            if (window.location.href === "http://localhost:3000/lists") {
+            if (window.location.href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/lists") {
                 goToHomePage();
             } else {
                 (function clearAllInputs() {
@@ -157,7 +156,7 @@ function ifCancel() {
             }
         }
         if(typeOfCard === "note") {
-            if (window.location.href === "http://localhost:3000/notes") {
+            if (window.location.href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/notes") {
                 goToHomePage();
             } else {
                 window.location.href = `/notes/${targetID}`;
