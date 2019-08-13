@@ -25,7 +25,7 @@ async function deleteThisList() {
     let data = {
         id: targetID
     };
-    let req = await fetch (`https://fem1ns.herokuapp.com/fem1ns/api/lists/${targetID}`, {
+    let req = await fetch (`https://fem1ns.herokuapp.com/api/lists/${targetID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"

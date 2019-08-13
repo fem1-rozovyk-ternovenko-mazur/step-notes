@@ -164,7 +164,7 @@ async function saveChangedNote() {
         text: newTxt,
     };
 
-    let req = await fetch (`https://fem1ns.herokuapp.com/fem1ns/api/notes/${targetID}`, {
+    let req = await fetch (`https://fem1ns.herokuapp.com/api/notes/${targetID}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"

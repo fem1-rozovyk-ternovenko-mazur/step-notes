@@ -25,7 +25,7 @@ function sortByStatus(e){
 //assigns the desired id depending on the link address
 function currentID (){
     let href = document.location.href;
-    if (href === "https://fem1ns.herokuapp.com/fem1ns/lists") {
+    if (href === "https://fem1ns.herokuapp.com/lists") {
         let id = Date.now();
         return id;
     } else {
