@@ -29,7 +29,7 @@ listArea.addEventListener('click',  function (event) {
 //save new list
 async function saveList() {
     let data = buildDataObject();
-    let req = await fetch('https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/lists', {
+    let req = await fetch('https://fem1ns.herokuapp.com/api/lists', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

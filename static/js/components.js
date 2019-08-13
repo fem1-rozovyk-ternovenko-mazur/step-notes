@@ -27,7 +27,7 @@ function sortByStatus(e){
 //assigns the desired id depending on the link address
 function currentID (){
     let href = document.location.href;
-    if (href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/lists") {
+    if (href === "https://fem1ns.herokuapp.com/lists" || href === "https://fem1ns.herokuapp.com/notes") {
         let id = Date.now();
         return id;
     } else {
@@ -156,7 +156,7 @@ function ifCancel() {
             }
         }
         if(typeOfCard === "note") {
-            if (window.location.href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/notes") {
+            if (window.location.href === "https://fem1ns.herokuapp.com/notes") {
                 goToHomePage();
             } else {
                 window.location.href = `/notes/${targetID}`;
@@ -195,7 +195,6 @@ function ifDelete(){
             deleteThisList();
         }
         if(typeOfCard === "note"){
-            console.log("Delete");
             deleteNote();
         }
     } );

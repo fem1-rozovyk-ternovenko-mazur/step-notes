@@ -25,7 +25,7 @@ app.set("view engine", "ejs");
 // Getting documents from db to the main page
 
 app.get("/", async (req, res)=>{
-    let notes = []
+    let notes = [];
     await app.db.find({}).forEach((el) => {
         notes.push(el)
     });
@@ -72,8 +72,9 @@ app.post("/api/notes", async (req, res) => {
 // Deleting note
 
 app.delete("/api/notes/:id", async (req, res) => {
+    let targetID = Number(req.body.id);
     try{
-        await app.db.deleteOne({id:req.body.id})
+        await app.db.deleteOne({id:targetID})
     } catch (err) {
         console.log(err);
     }
@@ -137,8 +138,9 @@ app.post("/api/lists", async (req, res) => {
 // Deleting list
 
 app.delete("/api/lists/:id", async (req, res) => {
+    let targetID = Number(req.params.id);
     try{
-        await app.db.deleteOne({id:+req.params.id});
+        await app.db.deleteOne({id:targetID});
     } catch (err) {
         console.log(err);
     }
