@@ -195,7 +195,6 @@ function ifDelete(){
             deleteThisList();
         }
         if(typeOfCard === "note"){
-            console.log("Delete");
             deleteNote();
         }
     } );
