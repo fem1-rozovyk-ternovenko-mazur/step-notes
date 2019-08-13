@@ -26,3 +26,4 @@ async function saveNote() {
         alert("А смисл зберігати пусту нотатку?")
     }
 }
+}
