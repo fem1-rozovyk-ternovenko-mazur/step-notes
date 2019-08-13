@@ -6,21 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <%- include('components/head') %>
-
     <title>Your note</title>
 </head>
 <body>
-<h2 class="welcome-title">
-    Тут може бути ваша нотатка
-</h2>
-
+<h2 class="welcome-title">Тут може бути ваша нотатка</h2>
 <%- include('components/cat')%>
-
 <div class="container">
     <div class="card" id="<%= nts.id %>" >
-        <div class="card-body">
+        <div class="card-body" data-type="note">
             <div class="text-right">
-                <button type="button" class="btn btn-danger mb-3" id="deleteNoteBtn"> Видалити </button>
+                <button type="button" class="btn btn-danger mb-3" id="deleteNoteBtn">Видалити</button>
             </div>
             <div id="noteTitleContainer">
                 <h5 class="card-title font-weight-bold" id="noteTitle"> <%= nts.title %> </h5>
@@ -30,7 +25,7 @@
             </div>
                 <div class="row" id="bottomBtnsContainer">
                     <div class="col" id="leftBottomBtn">
-                        <a href="/" class="btn btn-primary" id="returnToMain"> Назад </a>
+                        <a href="/" class="btn btn-primary" id="returnToMain"> На головну </a>
                     </div>
                     <div class="col text-right" id="rightBottomBtn">
                         <button class="btn btn-warning" id="editNoteBtn"> Редагувати </button>
@@ -39,7 +34,8 @@
         </div>
     </div>
 </div>
-
+<script src="../js/components.js"></script>
 <script src="../js/note-detailed.js"></script>
+
 </body>
 </html>

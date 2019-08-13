@@ -1,3 +1,5 @@
+const typeOfCard = document.querySelector(".card-body").dataset.type;
+
 //directs to the Home page
 function goToHomePage() {
     window.location.href = "/";
@@ -32,7 +34,7 @@ function currentID (){
         let id = targetID;
         return id;
     }
-};
+}
 
 //adds a new item, editing or creating a list
 function addListItem(){
@@ -84,6 +86,7 @@ function editListItem(e) {
 //building a list object
 function buildDataObject() {
     let id = currentID();
+    if(typeOfCard === "list"){
     let listTitle = document.querySelector(".list-title").value;
     let listItem = [];
     let listArea = document.querySelectorAll('.label-wrap');
@@ -104,10 +107,22 @@ function buildDataObject() {
         body: listItem,
     };
     return  dataObject;
+    }
+    if(typeOfCard === "note"){
+        let noteTitle = document.querySelector("#note-title").value;
+        let noteText = document.querySelector("#note-text").value;
+
+        let dataObject = {
+            id: id,
+            type: "note",
+            title: noteTitle,
+            text: noteText,
+        };
+        return  dataObject;
+    }
 }
 
-
-// modal window if you exit without saving
+// modal window if you want to exit without saving
 function ifCancel() {
     const exitCard = document.createElement("div");
     exitCard.className = "confirm-exit-wrapper-list";
@@ -129,12 +144,24 @@ function ifCancel() {
     const confirmExitBtn = document.querySelector("#confirmExitBtn");
     const cancelExitBtn = document.querySelector("#cancelExitBtn");
     confirmExitBtn.addEventListener('click', function () {
-        //перейти на гавную стараницу
-        (function clearAllInputs() {
-            document.querySelector('.list-title').value = null;
-            clearInputItem();
-        })();
-        goToHomePage();
+        if (typeOfCard === "list") {
+            if (window.location.href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/lists") {
+                goToHomePage();
+            } else {
+                (function clearAllInputs() {
+                    document.querySelector('.list-title').value = null;
+                    clearInputItem();
+                })();
+                goToHomePage();
+            }
+        }
+        if(typeOfCard === "note") {
+            if (window.location.href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/notes") {
+                goToHomePage();
+            } else {
+                window.location.href = `/notes/${targetID}`;
+            }
+        }
     });
     cancelExitBtn.addEventListener('click', function () {
         document.body.removeChild(exitCard)
@@ -149,7 +176,7 @@ function ifDelete(){
     let height = body.offsetHeight;
     confirmDeletionCard.style.height = `${height}px`;
     confirmDeletionCard.innerHTML = `<div class="alert alert-info text-center text-dark">
-                                <span> Ви точно бажаєте видалити цей список? </span>
+                                <span> Ви точно бажаєте видалити? </span>
                                 <div class="row mt-3">
                                     <div class="col">
                                         <button class="btn btn-danger" id="confirmDeletionBtn"> Так</button>
@@ -163,6 +190,14 @@ function ifDelete(){
     const confirmDeletionBtn = document.querySelector("#confirmDeletionBtn");
     const cancelDeletionBtn = document.querySelector("#cancelDeletionBtn");
 
-    confirmDeletionBtn.addEventListener("click", deleteThisList);
+    confirmDeletionBtn.addEventListener("click", function(){
+        if(typeOfCard === "list"){
+            deleteThisList();
+        }
+        if(typeOfCard === "note"){
+            console.log("Delete");
+            deleteNote();
+        }
+    } );
     cancelDeletionBtn.addEventListener("click", function (){document.body.removeChild(confirmDeletionCard)})
 }
