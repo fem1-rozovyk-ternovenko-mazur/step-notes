@@ -12,7 +12,7 @@ async function deleteNote() {
         id:targetID,
     };
 
-    let req = await fetch (`fem1ns.herokuapp.com/api/notes/${targetID}`, {
+    let req = await fetch (`https://fem1ns.herokuapp.com/api/notes/${targetID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
