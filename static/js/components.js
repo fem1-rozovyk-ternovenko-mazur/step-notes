@@ -27,13 +27,13 @@ function sortByStatus(e){
 //assigns the desired id depending on the link address
 function currentID (){
     let href = document.location.href;
-        if (href === "http://localhost:3000/lists" || href === "http://localhost:3000/notes") {
-            let id = Date.now();
-            return id;
-        } else {
-            let id = targetID;
-            return id;
-        }
+    if (href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/lists") {
+        let id = Date.now();
+        return id;
+    } else {
+        let id = targetID;
+        return id;
+    }
 }
 
 //adds a new item, editing or creating a list
@@ -61,7 +61,7 @@ function addListItem(){
         listArea.appendChild(li);
     }
     clearInputItem();
-}
+};
 
 //removes or checking an item, editing or creating a list
 function editListItem(e) {
@@ -81,7 +81,7 @@ function editListItem(e) {
 
         }
     }
-}
+};
 
 //building a list object
 function buildDataObject() {
