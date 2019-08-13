@@ -12,7 +12,7 @@ async function saveNote() {
 
     if (data.text === "" || data.title === "") { alert("А смисл зберігати пусту нотатку?")}
 
-    let req = await fetch('https://fem1ns.herokuapp.com/api/notes', {
+    let req = await fetch('https://awesome-cat-notes.herokuapp.com/api/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
