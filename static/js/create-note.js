@@ -10,8 +10,8 @@ async function saveNote() {
 
     let data = buildDataObject();
 
-    if (data.text === "" || data.title === "") { alert("А смисл зберігати пусту нотатку?")}
-
+    if (data.text !== "" || data.title !== "") { 
+        
     let req = await fetch('https://awesome-cat-notes.herokuapp.com/api/notes', {
         method: "POST",
         headers: {
@@ -22,5 +22,7 @@ async function saveNote() {
     let answer = await req.json();
     if (answer.created){
         window.location.href = '/'
+    } else {
+        alert("А смисл зберігати пусту нотатку?")
     }
 }
