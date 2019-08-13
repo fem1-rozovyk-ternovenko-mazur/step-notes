@@ -51,7 +51,7 @@ async function saveNote() {
 
     if (data.text === "") { throw new Error("А смисл зберігати пусту нотатку?")}
 
-    let req = await fetch('https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/notes', {
+    let req = await fetch('https://fem1ns.herokuapp.com/fem1ns/api/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

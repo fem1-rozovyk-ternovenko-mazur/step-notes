@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 
 // Getting documents from db to the main page
 
-app.get("/", async (req, res)=>{
+app.get("https://fem1ns.herokuapp.com/fem1ns", async (req, res)=>{
     let notes = []
     await app.db.find({}).forEach((el) => {
         notes.push(el)
