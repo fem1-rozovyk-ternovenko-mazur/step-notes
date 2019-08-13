@@ -22,8 +22,9 @@ async function saveNote() {
     let answer = await req.json();
     if (answer.created){
         window.location.href = '/'
-    } else {
+    } 
+        }else {
         alert("А смисл зберігати пусту нотатку?")
     }
-}
+
 }
