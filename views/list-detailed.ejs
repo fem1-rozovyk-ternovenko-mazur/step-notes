@@ -12,13 +12,17 @@
     <%- include('components/cat')%>
     <div class="container">
         <div class="card" id="<%= list.id %>">
-            <div class="card-body">
+            <div class="card-body" data-type="list">
                 <div class="row">
                     <div class="col text-right">
                         <button class="btn btn-danger mb-2" id="deleteList">Видалити</button>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col list-title">
                         <h3 class="card-title text-center font-weight-bold"><%= list.title %> </h3>
+                    </div>
+                </div>
                         <ul class="list-group list-group-flush">
                             <% list.body.forEach(item => { %>
                                 <% if(item.check) { %>
@@ -39,8 +43,8 @@
             </div>
         </div>
     </div>
-<script src="../../js/lists.js"></script>
-<script src="../../js/list-components.js"></script>
+    <script src="../../js/lists.js"></script>
+    <script src="../../js/components.js"></script>
 </body>
 </html>
 

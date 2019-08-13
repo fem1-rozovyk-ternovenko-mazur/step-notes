@@ -1,44 +1,15 @@
 const editNoteBtn = document.querySelector("#editNoteBtn");
 const deleteNoteBtn = document.querySelector("#deleteNoteBtn");
 const returnToMain = document.querySelector("#returnToMain");
-
-let target = document.querySelector(".card");
-let targetID = Number(target.id);
+const card = document.querySelector(".card");
+const targetID = Number(card.id);
 
 editNoteBtn.addEventListener("click", editNote);
-deleteNoteBtn.addEventListener("click", confirmNoteDeletion);
-
-function confirmNoteDeletion(){
-    const confirmDeletionCard = document.createElement("div");
-    confirmDeletionCard.className = "confirm-wrapper";
-    let body = document.querySelector('html');
-    let height = body.offsetHeight;
-    confirmDeletionCard.style.height = `${height}px`;
-    confirmDeletionCard.innerHTML = `<div class="alert alert-info text-center text-dark">
-                                <span> Ви точно бажаєте видалити цю нотатку? </span>
-                                <div class="row mt-3">
-                                    <div class="col">
-                                        <button class="btn btn-danger" id="confirmDeletionBtn"> Так</button>
-                                    </div>
-                                    <div class="col">
-                                        <button class="btn btn-warning" id="cancelDeletionBtn"> Ні</button>
-                                    </div>        
-                                </div>
-                            </div>`;
-
-    document.body.appendChild(confirmDeletionCard);
-
-    const confirmDeletionBtn = document.querySelector("#confirmDeletionBtn");
-    const cancelDeletionBtn = document.querySelector("#cancelDeletionBtn");
-
-    confirmDeletionBtn.addEventListener("click", deleteNote);
-    cancelDeletionBtn.addEventListener("click", function (){document.body.removeChild(confirmDeletionCard)})
-}
+deleteNoteBtn.addEventListener("click", ifDelete);
 
 async function deleteNote() {
-
     let data = {
-        id: targetID
+        id:targetID,
     };
 
     let req = await fetch (`http://localhost:3000/api/notes/${targetID}`, {
@@ -51,7 +22,7 @@ async function deleteNote() {
     console.log(req);
     let answer = await req.json();
      if (answer.deleted){
-        window.location.href = '/'
+         goToHomePage();
     }
 }
 
@@ -60,8 +31,7 @@ function editNote() {
     getEditBtns();
 
     cancelChangesBtn.addEventListener("click", function () {
-        confirmEditingCancellation()
-
+        ifCancel()
     });
 
     saveChangedNoteBtn.addEventListener("click", saveChangedNote)
@@ -76,8 +46,8 @@ function getEditFields (){
     let editNoteTitle = document.createElement("div");
     editNoteTitle.className = "form-group";
     editNoteTitle.innerHTML = `
-            <label for="newTitle"> Змінити назву </label>
-            <textarea class="form-control" id="newTitle" rows="1"> ${originalNoteTitle} </textarea>
+            <label for="note-title"> Змінити назву </label>
+            <textarea class="form-control" id="note-title" rows="1"> ${originalNoteTitle} </textarea>
     `;
 
     // for Text
@@ -88,11 +58,9 @@ function getEditFields (){
     let editNoteTxt = document.createElement("div");
     editNoteTxt.className = "form-group";
     editNoteTxt.innerHTML = `
-           <label for="newTxt"> Змінити текст </label>
-           <textarea class="form-control" id="newTxt" rows="3" > ${originalNoteTxt}</textarea> 
-    `;
+           <label for="note-text"> Змінити текст </label>
+           <textarea class="form-control" id="note-text" rows="3" > ${originalNoteTxt}</textarea>`;
 
-    // Magic:
     noteTitleContainer.removeChild(noteTitle);
     noteTitleContainer.appendChild(editNoteTitle);
 
@@ -101,7 +69,6 @@ function getEditFields (){
 }
 
 function getEditBtns() {
-
     const leftBottomBtn = document.querySelector("#leftBottomBtn");
     const rightBottomBtn = document.querySelector("#rightBottomBtn");
 
@@ -115,7 +82,6 @@ function getEditBtns() {
     cancelChangesBtn.id = "cancelChangesBtn";
     cancelChangesBtn.innerText = "Скасувати";
 
-    // Magic
     leftBottomBtn.removeChild(returnToMain);
     leftBottomBtn.appendChild(cancelChangesBtn);
 
@@ -123,47 +89,9 @@ function getEditBtns() {
     rightBottomBtn.appendChild(saveChangedNoteBtn);
 }
 
-function confirmEditingCancellation(){
-
-    const confirmEditingCard = document.createElement("div");
-    confirmEditingCard.className = "confirm-wrapper";
-    let body = document.querySelector('html');
-    let height = body.offsetHeight;
-    confirmEditingCard.style.height = `${height}px`;
-    confirmEditingCard.innerHTML = `<div class="alert alert-info text-center text-dark">
-                                <span>  Залишити цю сторінку без збереження? </span>
-                                <div class="row mt-3">
-                                    <div class="col">
-                                        <button class="btn btn-danger" id="confirmEditingCancelationBtn"> Так</button>
-                                    </div>
-                                    <div class="col">
-                                        <button class="btn btn-warning" id="cancelEditingCancelationBtn"> Ні</button>
-                                    </div>        
-                                </div>
-                            </div>`;
-
-    document.body.appendChild(confirmEditingCard);
-
-    const confirmEditingCancelationBtn = document.querySelector("#confirmEditingCancelationBtn");
-    const cancelEditingCancelationBtn = document.querySelector("#cancelEditingCancelationBtn");
-
-    confirmEditingCancelationBtn.addEventListener("click", function () {
-        window.location.href = `/notes/${targetID}`
-    });
-    cancelEditingCancelationBtn.addEventListener("click", function (){document.body.removeChild(confirmEditingCard)})
-}
-
+//save edited note
 async function saveChangedNote() {
-    let newTitle = document.querySelector("#newTitle").value;
-    let  newTxt = document.querySelector("#newTxt").value;
-
-    let data = {
-        id: targetID,
-        type: "note",
-        title: newTitle,
-        text: newTxt,
-    };
-
+    let data = buildDataObject();
     let req = await fetch (`http://localhost:3000/api/notes/${targetID}`, {
         method: "PUT",
         headers: {
@@ -173,6 +101,6 @@ async function saveChangedNote() {
     });
     let answer = await req.json();
     if (answer.edited){
-        window.location.href = '/'
+        goToHomePage();
     }
 }

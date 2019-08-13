@@ -14,7 +14,7 @@
     <%- include('components/cat')%>
     <div class="create-note-wrapper">
         <div class="card text-dark mb-3" style="max-width: 18rem;">
-                <div class="card-body">
+                <div class="card-body" data-type="note">
                     <div class="row">
                         <div class="col text-right">
                             <button type="button" class="btn btn-danger" id="cancelBtn"> Відміна </button>
@@ -32,7 +32,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="note-txt"> Текст </label>
-                                <textarea class="form-control" id="note-txt" rows="3" required></textarea>
+                                <textarea class="form-control" id="note-text" rows="3" required></textarea>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
         </div>
 </div>
 
-<script src="../js/note-components.js"></script>
+<script src="../js/components.js"></script>
 <script src="../js/create-note.js"></script>
 </body>
 </html>

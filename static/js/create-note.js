@@ -2,22 +2,13 @@
 const cancelBtn = document.querySelector("#cancelBtn");
 const saveNoteBtn = document.querySelector("#saveNoteBtn");
 
-cancelBtn.addEventListener("click", cancelNote);
+cancelBtn.addEventListener("click", ifCancel);
 saveNoteBtn.addEventListener("click", saveNote );
 
 
 async function saveNote() {
 
-    let id = Date.now();
-    let noteTitle = document.querySelector("#note-title").value;
-    let noteTxt = document.querySelector('#note-txt').value;
-
-    let data = {
-        id: id,
-        type: "note",
-        title: noteTitle,
-        text: noteTxt,
-    };
+    let data = buildDataObject()
 
     if (data.text === "" || data.title === "") { throw new Error("А смисл зберігати пусту нотатку?")}
 
