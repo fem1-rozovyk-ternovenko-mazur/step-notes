@@ -27,7 +27,7 @@ function sortByStatus(e){
 //assigns the desired id depending on the link address
 function currentID (){
     let href = document.location.href;
-    if (href === "https://fem1ns.herokuapp.com/lists" || href === "https://fem1ns.herokuapp.com/notes") {
+    if (href === "https://awesome-cat-notes.herokuapp.com/lists" || href === "https://awesome-cat-notes.herokuapp.com/notes") {
         let id = Date.now();
         return id;
     } else {
@@ -145,7 +145,7 @@ function ifCancel() {
     const cancelExitBtn = document.querySelector("#cancelExitBtn");
     confirmExitBtn.addEventListener('click', function () {
         if (typeOfCard === "list") {
-            if (window.location.href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/lists") {
+            if (window.location.href === "https://awesome-cat-notes.herokuapp.com/lists") {
                 goToHomePage();
             } else {
                 (function clearAllInputs() {
@@ -156,7 +156,7 @@ function ifCancel() {
             }
         }
         if(typeOfCard === "note") {
-            if (window.location.href === "https://fem1ns.herokuapp.com/notes") {
+            if (window.location.href === "https://awesome-cat-notes.herokuapp.com/notes") {
                 goToHomePage();
             } else {
                 window.location.href = `/notes/${targetID}`;
