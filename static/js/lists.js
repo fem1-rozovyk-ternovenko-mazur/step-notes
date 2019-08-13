@@ -25,7 +25,7 @@ async function deleteThisList() {
     let data = {
         id: targetID
     };
-    let req = await fetch (`http://localhost:3000/api/lists/${targetID}`, {
+    let req = await fetch (`https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/lists/${targetID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -71,7 +71,7 @@ function editThisList() {
     //save edited list
     async function saveEditNote() {
        let data = buildDataObject();
-        let req = await fetch(`http://localhost:3000/api/lists/${targetID}`, {
+        let req = await fetch(`https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/lists/${targetID}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"

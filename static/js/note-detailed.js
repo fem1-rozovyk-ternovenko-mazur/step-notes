@@ -41,7 +41,7 @@ async function deleteNote() {
         id: targetID
     };
 
-    let req = await fetch (`http://localhost:3000/api/notes/${targetID}`, {
+    let req = await fetch (`https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/notes/${targetID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -164,7 +164,7 @@ async function saveChangedNote() {
         text: newTxt,
     };
 
-    let req = await fetch (`http://localhost:3000/api/notes/${targetID}`, {
+    let req = await fetch (`https://notes-rozovyk-ternovenko-mazur.herokuapp.com/api/notes/${targetID}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"

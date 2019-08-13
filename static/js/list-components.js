@@ -25,7 +25,7 @@ function sortByStatus(e){
 //assigns the desired id depending on the link address
 function currentID (){
     let href = document.location.href;
-    if (href === "http://localhost:3000/lists") {
+    if (href === "https://notes-rozovyk-ternovenko-mazur.herokuapp.com/lists") {
         let id = Date.now();
         return id;
     } else {
