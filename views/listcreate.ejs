@@ -9,45 +9,41 @@
     <%- include('components/head') %>
 </head>
 <body>
-<div class="container">
-    <h2 class="welcome-title">
-        Створити новий список
-    </h2>
-
-<%- include('components/cat')%>
     <div class="container">
-        <div class="card">
-            <div class="card-body">
-                <div class="row">
-                    <div class="col">
-                        <button class="btn btn-danger" id="cancelNewList">Відміна</button>
-                    </div>
-                    <div class="col text-right">
-                        <button class="btn btn-success"  id="saveNewList">Зберегти</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="input-group mb-3 mt-3">
-                            <input type="text" class="form-control list-title" placeholder="Створи ім'я свого списка">
-                    </div>
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <button class="btn btn-info" type="button" id="addNewItem">Додати пункт</button>
+        <h2 class="welcome-title">Створити новий список</h2>
+    <%- include('components/cat')%>
+        <div class="container">
+            <div class="card">
+                <div class="card-body" data-type="list">
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn btn-danger" id="cancelNewList">Відміна</button>
                         </div>
-                        <input type="text" class="form-control" id="writeListItem" placeholder="Захопити світ ..." aria-describedby="button-addon1">
+                        <div class="col text-right">
+                            <button class="btn btn-success"  id="saveNewList">Зберегти</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-group mb-3 mt-3">
+                                <input type="text" class="form-control list-title" placeholder="Створи ім'я свого списка">
+                        </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <button class="btn btn-info" type="button" id="addNewItem">Додати пункт</button>
+                            </div>
+                            <input type="text" class="form-control" id="writeListItem" placeholder="Захопити світ ..." aria-describedby="button-addon1">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <ul class="list-group list-group-flush" id="listArea"></ul>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col">
-                        <ul class="list-group list-group-flush" id="listArea"></ul>
-                    </div>
-                </div>
-
             </div>
         </div>
+        <script src="/js/listcreate.js"></script>
+        <script src="../../js/components.js"></script>
     </div>
-    <script src="/js/listcreate.js"></script>
-    <script src="../../js/list-components.js"></script>
-</div>
 </body>
 </html>

@@ -19,7 +19,6 @@ deleteList.addEventListener('click', function () {
     ifDelete();
 });
 
-
 //delete This List
 async function deleteThisList() {
     let data = {
@@ -40,7 +39,6 @@ async function deleteThisList() {
 
 
 /* === EDIT LIST ===*/
-
 function editThisList() {
     getListTemplate();
     addNewItem.addEventListener('click', addListItem);
@@ -50,23 +48,17 @@ function editThisList() {
     const toHomePage = document.querySelector('#toHomePageFromEdit');
     const saveEditList = document.querySelector('#saveChangedList');
 
-
-    //На главную, снова
     toHomePage.addEventListener('click', function () {
         ifCancel();
     });
 
-    //Удалить список, снова
     deleteList.addEventListener('click', function () {
         ifDelete()
-        // deleteThisList();
     });
 
-    //сохранить измененный список, новое
     saveEditList.addEventListener('click', function () {
         saveEditNote();
     });
-
 
     //save edited list
     async function saveEditNote() {
@@ -84,7 +76,6 @@ function editThisList() {
         }
     }
 }
-
 
 //compiles a list editing template
 function getListTemplate() {
@@ -108,7 +99,6 @@ function getListTemplate() {
 function getlistItems() {
     let sting = ``;
     cardListItem.forEach((e)=>{
-        console.log(e.className);
         if (e.classList[1] === "crossed-text"){
             let listValue =`<li class="list-group-item item-wrap"><label class="label-wrap crossed-text"><input type="checkbox" name="check" class="mr-3" checked>${e.innerText}</label><span class="remove">X</span></li>`;
             sting += listValue;
@@ -118,5 +108,4 @@ function getlistItems() {
         }
     });
     return sting;
-};
-
+}
