@@ -9,24 +9,22 @@ editNoteBtn.addEventListener("click", editNote);
 deleteNoteBtn.addEventListener("click", confirmNoteDeletion);
 
 function confirmNoteDeletion(){
-
     const confirmDeletionCard = document.createElement("div");
-
-    confirmDeletionCard.innerHTML = `
-                        <div class="confirm-wrapper">
-                            <div class="alert alert-info text-center text-dark">
-                                <span> Точно ВИДАЛИТИ нотатку? </span>
+    confirmDeletionCard.className = "confirm-wrapper";
+    let body = document.querySelector('html');
+    let height = body.offsetHeight;
+    confirmDeletionCard.style.height = `${height}px`;
+    confirmDeletionCard.innerHTML = `<div class="alert alert-info text-center text-dark">
+                                <span> Ви точно бажаєте видалити цю нотатку? </span>
                                 <div class="row mt-3">
                                     <div class="col">
-                                        <button class="btn btn-danger" id="confirmDeletionBtn"> Так, видали </button>
+                                        <button class="btn btn-danger" id="confirmDeletionBtn"> Так</button>
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-warning" id="cancelDeletionBtn"> Ні, хай живе </button>
+                                        <button class="btn btn-warning" id="cancelDeletionBtn"> Ні</button>
                                     </div>        
                                 </div>
-                            </div>
-                        </div>
-    `;
+                            </div>`;
 
     document.body.appendChild(confirmDeletionCard);
 
@@ -127,25 +125,24 @@ function getEditBtns() {
 
 function confirmEditingCancellation(){
 
-    const confirmDeletionCard = document.createElement("div");
-
-    confirmDeletionCard.innerHTML = `
-                        <div class="confirm-wrapper">
-                            <div class="alert alert-info text-center text-dark">
-                                <span> Точно НЕ ЗБЕРІГАТИ зміни? </span>
+    const confirmEditingCard = document.createElement("div");
+    confirmEditingCard.className = "confirm-wrapper";
+    let body = document.querySelector('html');
+    let height = body.offsetHeight;
+    confirmEditingCard.style.height = `${height}px`;
+    confirmEditingCard.innerHTML = `<div class="alert alert-info text-center text-dark">
+                                <span>  Залишити цю сторінку без збереження? </span>
                                 <div class="row mt-3">
                                     <div class="col">
-                                        <button class="btn btn-danger" id="confirmEditingCancelationBtn"> Так, забудь </button>
+                                        <button class="btn btn-danger" id="confirmEditingCancelationBtn"> Так</button>
                                     </div>
                                     <div class="col">
-                                        <button class="btn btn-warning" id="cancelEditingCancelationBtn"> Ні, я продовжу </button>
+                                        <button class="btn btn-warning" id="cancelEditingCancelationBtn"> Ні</button>
                                     </div>        
                                 </div>
-                            </div>
-                        </div>
-    `;
+                            </div>`;
 
-    document.body.appendChild(confirmDeletionCard);
+    document.body.appendChild(confirmEditingCard);
 
     const confirmEditingCancelationBtn = document.querySelector("#confirmEditingCancelationBtn");
     const cancelEditingCancelationBtn = document.querySelector("#cancelEditingCancelationBtn");
@@ -153,7 +150,7 @@ function confirmEditingCancellation(){
     confirmEditingCancelationBtn.addEventListener("click", function () {
         window.location.href = `/notes/${targetID}`
     });
-    cancelEditingCancelationBtn.addEventListener("click", function (){document.body.removeChild(confirmDeletionCard)})
+    cancelEditingCancelationBtn.addEventListener("click", function (){document.body.removeChild(confirmEditingCard)})
 }
 
 async function saveChangedNote() {
