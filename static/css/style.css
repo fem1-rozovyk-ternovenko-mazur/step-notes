@@ -110,6 +110,16 @@
     padding: 5px;
 }
 
+
+
+
+/*-------------  Home Page   --------------*/
+.home-page{
+    max-height: 250px;
+    overflow: hidden;
+}
+
+
 /*-------------  Notes   --------------*/
 
 .create-note-wrapper{
