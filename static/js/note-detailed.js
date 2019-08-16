@@ -2,7 +2,7 @@ const editNoteBtn = document.querySelector("#editNoteBtn");
 const deleteNoteBtn = document.querySelector("#deleteNoteBtn");
 const returnToMain = document.querySelector("#returnToMain");
 const card = document.querySelector(".card");
-const targetID = Number(card.id);
+const targetID = card.id;
 
 editNoteBtn.addEventListener("click", editNote);
 deleteNoteBtn.addEventListener("click", ifDelete);

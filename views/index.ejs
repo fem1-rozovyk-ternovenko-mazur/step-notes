@@ -14,32 +14,40 @@
         <h2 class="welcome-title">Створюйте свої нотатки та списки справ!</h2>
 
     <%- include('components/cat')%>
-    <button type="button" id="addNoteButton" class="btn btn-warning mb-2"><i class="far fa-comment-alt"></i>Додати нотатку</button>
-    <button type="button" id="addListButton" class="btn btn-success mb-2"><i class="far fa-check-square"></i>Додати список справ</button>
-    <!--Display the note list-->
-    <div class="card-columns mt-2" id="notesList">
-        <!--Card note/list-->
-        <% notes.forEach((elem) => { %>
-            <div class="card home-page" data-type="<%= elem.type %>" id="<%= elem.id%>">
-                <div class="card-body">
-                    <h5 class="card-title font-weight-bold"> <%= elem.title %> </h5>
-                    <% if (elem.body) { %>
-                            <ul class="list-group list-group-flush">
-                            <% elem.body.forEach(item => { %>
-                                    <% if(item.check) { %>
-                                        <li class=" list-group-item"> <span  class="mr-3">&#10003;</span><span class="list-text crossed-text"><%= item.todo %></span></li>
-                                    <% } else{%>
-                                        <li class="list-group-item"> <span class="mr-3">&#9723;</span><span class="list-text"><%= item.todo %></span></li>
-                                    <% } %>
-                            <% }) %>
-                            </ul>
-                    <% } else { %>
-                        <p class="card-text"> <%= elem.text %></p>
-                    <% } %>
-                </div>
-            </div>
-        <% })%>
+    <div class="row">
+        <div class="col text-center">
+            <button type="button" id="addNoteButton" class="btn btn-warning mb-2"><i class="far fa-comment-alt"></i>Додати нотатку</button>
+            <button type="button" id="addListButton" class="btn btn-success mb-2"><i class="far fa-check-square"></i>Додати список справ</button>
+        </div>
+    </div>
+        <!--Display the note list-->
+    <div class="row">
+        <div class="col">
+            <div class="card-columns mt-2" id="notesList">
+                <!--Card note/list-->
+                <% notes.forEach((elem) => { %>
+                    <div class="card home-page" data-type="<%= elem.type %>" id="<%= elem._id%>">
+                        <div class="card-body">
+                            <h5 class="card-title font-weight-bold"> <%= elem.title %> </h5>
+                            <% if (elem.body) { %>
+                                    <ul class="list-group list-group-flush">
+                                    <% elem.body.forEach(item => { %>
+                                            <% if(item.check) { %>
+                                                <li class=" list-group-item"> <span  class="mr-3">&#10003;</span><span class="list-text crossed-text"><%= item.todo %></span></li>
+                                            <% } else{%>
+                                                <li class="list-group-item"> <span class="mr-3">&#9723;</span><span class="list-text"><%= item.todo %></span></li>
+                                            <% } %>
+                                    <% }) %>
+                                    </ul>
+                            <% } else { %>
+                                <p class="card-text"> <%= elem.text %></p>
+                            <% } %>
+                        </div>
+                    </div>
+                <% })%>
 
+            </div>
+        </div>
     </div>
 </div>
 <script src="js/index.js"></script>

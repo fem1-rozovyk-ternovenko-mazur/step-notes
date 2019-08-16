@@ -5,7 +5,8 @@ const cardBody = document.querySelector('.card-body');
 const cardTitle = document.querySelector('.card-title').innerText;
 const cardListItem = document.querySelectorAll('.list-text');
 const card = document.querySelector(".card");
-const targetID = Number(card.id);
+const targetID = card.id;
+console.log(targetID);
 
 toHomePage.addEventListener('click', function () {
     goToHomePage();
@@ -24,6 +25,7 @@ async function deleteThisList() {
     let data = {
         id: targetID
     };
+    console.log(data);
     let req = await fetch (`https://awesome-cat-notes.herokuapp.com/api/lists/${targetID}`, {
         method: "DELETE",
         headers: {

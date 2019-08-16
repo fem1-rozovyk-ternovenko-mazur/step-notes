@@ -24,18 +24,6 @@ function sortByStatus(e){
     e.sort(compare);
 }
 
-//assigns the desired id depending on the link address
-function currentID (){
-    let href = document.location.href;
-    if (href === "https://awesome-cat-notes.herokuapp.com/lists" || href === "https://awesome-cat-notes.herokuapp.com/notes") {
-        let id = Date.now();
-        return id;
-    } else {
-        let id = targetID;
-        return id;
-    }
-}
-
 //adds a new item, editing or creating a list
 function addListItem(){
     let valueListItem = document.querySelector('#writeListItem').value;
@@ -85,7 +73,6 @@ function editListItem(e) {
 
 //building a list object
 function buildDataObject() {
-    let id = currentID();
     if(typeOfCard === "list"){
     let listTitle = document.querySelector(".list-title").value;
     let listItem = [];
@@ -101,7 +88,6 @@ function buildDataObject() {
     }
     sortByStatus(listItem);
      let dataObject = {
-        id: id,
         type: "list",
         title: listTitle,
         body: listItem,
@@ -113,7 +99,6 @@ function buildDataObject() {
         let noteText = document.querySelector("#note-text").value;
 
         let dataObject = {
-            id: id,
             type: "note",
             title: noteTitle,
             text: noteText,

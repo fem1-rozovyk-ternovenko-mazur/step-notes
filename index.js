@@ -7,8 +7,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 const MongoClient = require('mongodb').MongoClient;
+const ObjectId =  require('mongodb').ObjectId;
 const uri = "mongodb+srv://admin:admin@cluster0-cgytz.mongodb.net/test?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true });
+const client = new MongoClient(uri, {useUnifiedTopology: true, useNewUrlParser: true });
 
 
 client.connect(err => {
@@ -23,30 +24,27 @@ app.set("view engine", "ejs");
 
 
 // Getting documents from db to the main page
-
 app.get("/", async (req, res)=>{
     let notes = [];
     await app.db.find({}).forEach((el) => {
         notes.push(el)
     });
+
     res.render("index", {notes})
 });
 
 
 // Creating note
-
 app.get("/notes", async (req, res) => {
-
     res.render("create-note");
 });
 
 
 // Redirecting to the note page
-
 app.get('/notes/:id', async(req, res) => {
     let nts;
-    let targetID = Number(req.params.id);
-    await app.db.find({id:targetID}).forEach((elem) => {
+    let targetID = ObjectId(req.params.id.toString());
+    await app.db.find({_id:targetID}).forEach((elem) => {
         nts = elem
     });
     res.render('note-detailed', {nts})
@@ -72,9 +70,10 @@ app.post("/api/notes", async (req, res) => {
 // Deleting note
 
 app.delete("/api/notes/:id", async (req, res) => {
-    let targetID = Number(req.body.id);
+    let targetID = ObjectId(req.params.id.toString());
+
     try{
-        await app.db.deleteOne({id:targetID})
+        await app.db.deleteOne({_id:targetID})
     } catch (err) {
         console.log(err);
     }
@@ -85,9 +84,10 @@ app.delete("/api/notes/:id", async (req, res) => {
 // Editing note
 
 app.put("/api/notes/:id", async (req, res) => {
-    let targetID = Number(req.body.id);
+    let targetID = ObjectId(req.params.id.toString());
+    console.log(targetID);
     try {
-        await app.db.updateOne({id: targetID}, {
+        await app.db.updateOne({_id:targetID}, {
             $set: {
                 title: req.body.title,
                 text: req.body.text,
@@ -103,7 +103,7 @@ app.put("/api/notes/:id", async (req, res) => {
 // Creating list
 
 app.get("/lists", async (req, res) => {
-    res.render("listcreate")
+    res.render("listcreate");
 });
 
 
@@ -111,19 +111,17 @@ app.get("/lists", async (req, res) => {
 
 app.get("/lists/:id", async (req, res) => {
         let list;
-        let targetID = Number(req.params.id);
-    await app.db.find({id:targetID}).forEach((elem) => {
-            list = elem;
+        let targetID = ObjectId(req.params.id.toString());
+    await app.db.find({_id: targetID}).forEach((elem) => {
+        list = elem;
         });
         res.render('list-detailed', {list} )
 });
 
 
 // Redirecting to the main page after list's saving
-
 app.post("/api/lists", async (req, res) => {
     console.log(req.body);
-
     try {
         await app.db.insertOne({
             ...req.body,
@@ -138,9 +136,9 @@ app.post("/api/lists", async (req, res) => {
 // Deleting list
 
 app.delete("/api/lists/:id", async (req, res) => {
-    let targetID = Number(req.params.id);
+    let targetID = ObjectId(req.params.id);
     try{
-        await app.db.deleteOne({id:targetID});
+        await app.db.deleteOne({_id:targetID});
     } catch (err) {
         console.log(err);
     }
@@ -148,11 +146,10 @@ app.delete("/api/lists/:id", async (req, res) => {
 });
 
 // Editing list
-
 app.put("/api/lists/:id", async (req, res) => {
-    let targetID = Number(req.body.id);
+    let targetID = ObjectId(req.params.id.toString());
     try {
-        await app.db.updateOne({id: +targetID}, {
+        await app.db.updateOne({_id: targetID}, {
             $set: {
                 title: req.body.title,
                 body: req.body.body,
@@ -165,8 +162,6 @@ app.put("/api/lists/:id", async (req, res) => {
 });
 
 // Server checking
-
 app.listen(port, ()=>{
-    console.log("hello in console")
+    console.log("hello in console");
 });
-
