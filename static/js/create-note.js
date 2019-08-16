@@ -12,7 +12,7 @@ async function saveNote() {
 
     if (data.text !== "" || data.title !== "") {
         
-    let req = await fetch('http://localhost:3000/api/notes', {
+    let req = await fetch('http://awesome-cat-notes.herokuapp.com/api/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

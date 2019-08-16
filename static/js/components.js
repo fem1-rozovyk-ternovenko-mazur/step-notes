@@ -130,7 +130,7 @@ function ifCancel() {
     const cancelExitBtn = document.querySelector("#cancelExitBtn");
     confirmExitBtn.addEventListener('click', function () {
         if (typeOfCard === "list") {
-            if (window.location.href === "http://localhost:3000/lists") {
+            if (window.location.href === "http://awesome-cat-notes.herokuapp.com/lists") {
                 goToHomePage();
             } else {
                 (function clearAllInputs() {
@@ -141,7 +141,7 @@ function ifCancel() {
             }
         }
         if(typeOfCard === "note") {
-            if (window.location.href === "http://localhost:3000/notes") {
+            if (window.location.href === "http://awesome-cat-notes.herokuapp.com/notes") {
                 goToHomePage();
             } else {
                 window.location.href = `/notes/${targetID}`;

@@ -12,7 +12,7 @@ async function deleteNote() {
         id:targetID,
     };
 
-    let req = await fetch (`http://localhost:3000/api/notes/${targetID}`, {
+    let req = await fetch (`http://awesome-cat-notes.herokuapp.com/api/notes/${targetID}`, {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json"
@@ -92,7 +92,7 @@ function getEditBtns() {
 //save edited note
 async function saveChangedNote() {
     let data = buildDataObject();
-    let req = await fetch (`http://localhost:3000/api/notes/${targetID}`, {
+    let req = await fetch (`http://awesome-cat-notes.herokuapp.com/api/notes/${targetID}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json"
