@@ -16,7 +16,7 @@ const cardItem = document.getElementById('notesList');
 cardItem.addEventListener('click', function (e) {
     let target = e.target.closest('.card');
     let id = target.id;
-
+    console.log(id);
     if (target.dataset.type === "note") {
             window.location.href = `/notes/${id}`
     }
