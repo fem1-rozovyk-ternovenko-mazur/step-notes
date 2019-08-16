@@ -23,7 +23,6 @@ app.set("view engine", "ejs");
 
 
 // Getting documents from db to the main page
-
 app.get("/", async (req, res)=>{
     let notes = [];
     await app.db.find({}).forEach((el) => {
@@ -34,7 +33,6 @@ app.get("/", async (req, res)=>{
 
 
 // Creating note
-
 app.get("/notes", async (req, res) => {
 
     res.render("create-note");
