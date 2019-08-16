@@ -10,9 +10,9 @@ async function saveNote() {
 
     let data = buildDataObject();
 
-    if (data.text !== "" || data.title !== "") { 
+    if (data.text !== "" || data.title !== "") {
         
-    let req = await fetch('https://note-app-tern.herokuapp.com/api/notes', {
+    let req = await fetch('http://localhost:3000/api/notes', {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

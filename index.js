@@ -34,13 +34,11 @@ app.get("/", async (req, res)=>{
 
 // Creating note
 app.get("/notes", async (req, res) => {
-
     res.render("create-note");
 });
 
 
 // Redirecting to the note page
-
 app.get('/notes/:id', async(req, res) => {
     let nts;
     let targetID = Number(req.params.id);
